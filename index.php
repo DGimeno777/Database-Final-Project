@@ -1,14 +1,15 @@
 <?php
-include "model/database.php";
+//include "model/database.php";
 
-if(isset($_POST['action'])){
+if(isset($_GET['action'])){
     $action = $_POST['action'];
 }
 else{
     $action = "homepage";
 }
 
-if(false){
+if($action == "profile"){
+	include "view/profile.php";
 }
 else{
     include "view/homepage.php";
