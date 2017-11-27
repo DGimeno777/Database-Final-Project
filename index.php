@@ -20,7 +20,7 @@ else if($action == "login") {
     include "view/login.php";
 }
 else if($action == "login_go") {
-    $check = true;
+    $check = false;
     $id = -1;
     if(isset($_POST['username']) &&
         isset($_POST['password'])) {
@@ -40,6 +40,32 @@ else if($action == "login_go") {
 }
 else if($action == "register") {
     include "view/register.php";
+}
+else if($action == "register_go") {
+    $check = false;
+    if (isset($_POST['username']) &&
+        isset($_POST['password']) &&
+        isset($_POST['password_verify']) &&
+        $_POST['password'] == $_POST['password_verify'] &&
+        isset($_POST['user_type'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $user_type = $_POST['user_type'];
+        if (false) { // not user already exists
+            $check = true;
+        }
+        else {
+            echo "Username already exists";
+        }
+    }
+
+    if ($check) {
+        include "view/profile.php";
+    }
+    else {
+        echo "Could not register";
+        include "view/register.php";
+    }
 }
 else{
     include "view/homepage.php";
