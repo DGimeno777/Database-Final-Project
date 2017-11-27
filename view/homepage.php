@@ -21,6 +21,10 @@
             <input type="submit" value="Login">
             <input type="hidden" name="action" value="login">
         </form>
+        <form action="./" method="post">
+            <input type="submit" value="Register">
+            <input type="hidden" name="action" value="register">
+        </form>
     </div>
 </div>
 </body>

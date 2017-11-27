@@ -36,13 +36,16 @@
 <body>
 <div class="positiondiv">
     <div class="title">
-        Insert Name Here/Title Here
+        Username
     </div>
     <div class="catdiv">
-        Category Div for information
+        User Type
     </div>
     <div class="catdiv">
-        Another category div for information
+        Edit Stuff:
+    </div>
+    <div class="catdiv">
+        Look at shows/stuff
     </div>
 </div>
 <br>
