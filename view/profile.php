@@ -22,6 +22,7 @@
         margin-right: auto;
         width: 15em;
         text-align: left;
+        margin-top: 1em;
     }
 
     .hidden{
@@ -43,31 +44,51 @@
         <?php echo $user['UserName']; ?>
     </div>
     <div class="catdiv">
-        User Type: <?php echo $user['UserType']; ?>
-    </div>
-    <div class="catdiv">
-    </div>
-    <div class="catdiv">
         <?php if($user['UserType'] == "customer") :?>
             <div>
                 <table>
+                    <tr>
+                        <th>
+                            Showname
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Ticket Price
+                        </th>
+                        <th>
+                            Venue
+                        </th>
+                        <th>
+                            Tickets Left
+                        </th>
+                    </tr>
+                    
+                    <tr>
 
+                    </tr>
                 </table>
             </div>
         <?php elseif($user['UserType'] == "artist") :?>
             <div>
+                <table>
+                    <tr>
 
+                    </tr>
+                </table>
             </div>
         <?php elseif($user['UserType'] == "venue") :?>
             <div>
+                <table>
 
+                </table>
             </div>
         <?php endif; ?>
     </div>
 </div>
 <br>
 <div class="positiondiv">
-	Buttons to go places
     <form action="./" method="post">
         <input class="button" type="submit" value=" Search ">
         <input class="hidden" type="hidden" name="action" value="search">

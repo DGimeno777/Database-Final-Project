@@ -39,7 +39,7 @@ else if($action == "login_go") {
             $id = $user["UserID"];
         }
         else {
-            echo "User does not exist exists";
+            echo "User does not exist";
         }
     }
     if ($check) {
@@ -77,6 +77,7 @@ else if($action == "register_go") {
 
     if ($check) {
         $user = get_user_by_userId($id);
+        $user = $user->fetch();
         include "view/profile.php";
     }
     else {
