@@ -10,12 +10,18 @@ else{
 }
 
 if($action == "profile"){
-    if(isset($_POST['username']) &&
-        isset($_POST['password'])) {
+    $username = "";
+    if($username = isset($_POST['username']) &&
+        get_user_by_username($username)->rowCount() > 0) {
+
         $username = $_POST['username'];
-        $password = $_POST['password'];
+
+        $user = get_user_by_username($username)->fetch();
+            include "view/profile.php";
     }
-	include "view/profile.php";
+    else {
+        include "view/homepage.php";
+    }
 }
 else if($action == "login") {
     include "view/login.php";
@@ -27,16 +33,17 @@ else if($action == "login_go") {
         isset($_POST['password'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
-        if (get_user_by_username($username)) { // check to see if user exists
+        if (get_user_by_username($username)->rowCount() > 0) { // check to see if user exists
             $check = true;
-            $id = get_userId_by_username_and_password($username, $password);
+            $user = get_user_by_username_and_password($username, $password)->fetch();
+            $id = $user["UserID"];
         }
         else {
-            echo "User already exists";
+            echo "User does not exist exists";
         }
     }
     if ($check) {
-        $user = get_user_by_userId($id);
+        $user = get_user_by_userId($id)->fetch();
         include "view/profile.php";
     }
     else {
@@ -57,7 +64,9 @@ else if($action == "register_go") {
         $username = $_POST['username'];
         $password = $_POST['password'];
         $user_type = $_POST['user_type'];
-        if (get_user_by_username($username)) { // not user already exists
+        $check = get_user_by_username($username);
+        echo is_null($check);
+        if ($check->rowCount() <= 0) {
             $check = true;
             register_user($username,$password,$user_type);
         }

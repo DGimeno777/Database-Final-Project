@@ -1,8 +1,8 @@
 <?php
 
-function get_userId_by_username_and_password($username, $password) {
+function get_user_by_username_and_password($username, $password) {
     global $db;
-    $query = "select id from users where username = '$username' and password = '$password'";
+    $query = "select * from users where username = '$username' and pass = '$password'";
     $query = $db->query($query);
     return $query;
 }
@@ -17,13 +17,14 @@ function get_user_by_username($username) {
 function get_user_by_userId($userId) {
     global $db;
     $query = "select * from users where userid = '$userId'";
-    $query = $db->query($query)->fetch();
+    $query = $db->query($query);
     return $query;
 }
 
 function register_user($username, $password, $type) {
     global $db;
-    $query = "insert into users (username, password, usertype) VALUES ('$username','$password','$type')";
+    $query = "insert into users (username, pass, usertype) VALUES ('$username','$password','$type')";
+    echo $query;
     $db->exec($query);
 }
 

@@ -24,6 +24,10 @@
         text-align: left;
     }
 
+    .hidden{
+        display: none;
+    }
+
     .button{
         width: 7em;
         margin-top: -1em;
@@ -33,19 +37,32 @@
 <head>
 
 </head>
-<body>
+<body style="display: inline">
 <div class="positiondiv">
     <div class="title">
-        Username
+        <?php echo $user['UserName']; ?>
     </div>
     <div class="catdiv">
-        User Type
+        User Type: <?php echo $user['UserType']; ?>
     </div>
     <div class="catdiv">
-        Edit Stuff:
     </div>
     <div class="catdiv">
-        Look at shows/stuff
+        <?php if($user['UserType'] == "customer") :?>
+            <div>
+                <table>
+
+                </table>
+            </div>
+        <?php elseif($user['UserType'] == "artist") :?>
+            <div>
+
+            </div>
+        <?php elseif($user['UserType'] == "venue") :?>
+            <div>
+
+            </div>
+        <?php endif; ?>
     </div>
 </div>
 <br>
@@ -53,7 +70,7 @@
 	Buttons to go places
     <form action="./" method="post">
         <input class="button" type="submit" value=" Search ">
-        <input type="hidden" name="action" value="search">
+        <input class="hidden" type="hidden" name="action" value="search">
     </form>
     <form action="./" method="post">
         <input class="button" type="submit" value="Homepage">
