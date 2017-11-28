@@ -32,7 +32,7 @@
             <input type="radio" name="user_type" value="customer"> Customer
             <br>
             <input type="submit" value="Register">
-            <input type="hidden" name="action" value="Register">
+            <input type="hidden" name="action" value="register_go">
         </form>
         <form action="./" method="post">
             <input type="submit" value="Login">

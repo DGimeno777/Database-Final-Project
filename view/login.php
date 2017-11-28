@@ -25,7 +25,7 @@
             <input type="password" name="password">
             <br>
             <input type="submit" value="Login">
-            <input type="hidden" name="action" value="login">
+            <input type="hidden" name="action" value="login_go">
         </form>
         <form action="./" method="post">
             <input type="submit" value="Register">
