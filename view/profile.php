@@ -46,6 +46,28 @@
     <div class="catdiv">
         <?php if($user['UserType'] == "customer") :?>
             <div>
+                Bought Tickets:
+                <table>
+                    <tr>
+                        <th>
+                            Show name
+                        </th>
+                        <th>
+                            Section
+                        </th>
+                        <th>
+                            Show Date
+                        </th>
+                        <th>
+                            Venue Name
+                        </th>
+                        <th>
+                            Venue Location
+                        </th>
+                    </tr>
+                </table>
+            </div>
+            <div>
                 <table>
                     <tr>
                         <th>
@@ -64,7 +86,7 @@
                             Tickets Left
                         </th>
                     </tr>
-                    
+
                     <tr>
 
                     </tr>
