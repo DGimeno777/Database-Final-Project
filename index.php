@@ -36,7 +36,7 @@ else if($action == "login_go") {
         isset($_POST['password'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
-        if (get_user_by_username($username)->rowCount() > 0) { // check to see if user exists
+        if (get_user_by_username_and_password($username,$password)->rowCount() > 0) { // check to see if user exists
             $check = true;
             $user = get_user_by_username_and_password($username, $password)->fetch();
             $id = $user["UserID"];
