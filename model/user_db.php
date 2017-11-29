@@ -28,7 +28,7 @@ function register_user($username, $password, $type) {
     $db->exec($query);
 }
 
-function purchase_tickets($songID, $performanceID){
+function remove_song_from_setlist($songID, $performanceID){
     global $db;
     $query = "delete from SetListSong where SongID = '$songID' and PerformanceID = '$performanceID';";
     $query = $db->query($query);
