@@ -1,4 +1,12 @@
 <?php
+
+function get_all_shows() {
+    global $db;
+    $query = "select * from Shows";
+    $query = $db->query($query);
+    return $query;
+}
+
 //Use Case 1
 function get_shows_by_month($month){
     global $db;
@@ -17,7 +25,7 @@ function add_artist_to_show($artist, $show, $headline){
 //Use Case 6
 function remove_artist_from_show($artist, $show){
     global $db;
-    $query = "delete from Performance where ArtistID = '$artistID' and ShowID = '$showID';";
+    $query = "delete from Performance where ArtistID = '$artist' and ShowID = '$show';";
     $db->exec($query);
 }
 
@@ -38,7 +46,7 @@ function find_similar_artists($artistID){
 }
 
 //Use Case 14
-function find_similar_artists($artistID){
+function find_similar_artists_2($artistID){
     global $db;
     $query = "select count(*), Headline from Performance where ArtistID = '$artistID' group by Headline;";
     $query = $db->query($query);

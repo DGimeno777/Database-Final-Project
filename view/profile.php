@@ -20,8 +20,8 @@
     .positiondiv{
         margin-left: auto;
         margin-right: auto;
-        width: 15em;
-        text-align: left;
+        width: 40em;
+        text-align: center;
         margin-top: 1em;
     }
 
@@ -43,14 +43,17 @@
     <div class="title">
         <?php echo $user['UserName']; ?>
     </div>
+    <div class="title">
+        <?php echo $user['UserType']?>
+    </div>
     <div class="catdiv">
-        <?php if($user['UserType'] == "customer") :?>
+        <?php if($user['UserType'] == "Customer") :?>
             <div>
                 Bought Tickets:
                 <table>
                     <tr>
                         <th>
-                            Show name
+                            Show Name
                         </th>
                         <th>
                             Section
@@ -68,10 +71,11 @@
                 </table>
             </div>
             <div>
+                Shows:
                 <table>
                     <tr>
                         <th>
-                            Showname
+                            Show Name
                         </th>
                         <th>
                             Date
@@ -83,13 +87,38 @@
                             Venue
                         </th>
                         <th>
+                            Venue Location
+                        </th>
+                        <th>
                             Tickets Left
                         </th>
                     </tr>
-
+                    <?php foreach(get_all_shows() as $show) :?>
+                        <?php
+                            $venue = get_venue_from_venueId($show['VenueID']);
+                            $venue = $venue->fetch();
+                        ?>
                     <tr>
-
+                        <th>
+                            <?php echo $show["ShowName"];?>
+                        </th>
+                        <th>
+                            <?php echo $show["ShowDate"];?>
+                        </th>
+                        <th>
+                            <?php echo $show["TicketPrice"];?>
+                        </th>
+                        <th>
+                            <?php echo $venue["VenueName"];?>
+                        </th>
+                        <th>
+                            <?php echo $venue["Location"];?>
+                        </th>
+                        <th>
+                            <?php echo intval($venue["Capacity"]);?>
+                        </th>
                     </tr>
+                    <?php endforeach;?>
                 </table>
             </div>
         <?php elseif($user['UserType'] == "artist") :?>

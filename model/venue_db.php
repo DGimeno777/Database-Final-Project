@@ -1,4 +1,12 @@
 <?php
+
+function get_venue_from_venueId($venueId) {
+    global $db;
+    $query = "select * from venue WHERE VenueID = '$venueId'";
+    $query = $db->query($query);
+    return $query;
+}
+
 function get_average_venue_capacity($artistID){
     global $db;
     $query = "select avg(Capacity) from Performs natural join Shows natural join Venue where ArtistID = '$artistID'";
