@@ -41,10 +41,19 @@
 <body style="display: inline">
 <div class="positiondiv">
     <div class="title">
-        <?php echo $user['UserName']; ?>
+        <?php echo $user['UserName']?>
+        <br>
+        <?php echo $user['UserType']?>
     </div>
     <div class="title">
-        <?php echo $user['UserType']?>
+        Update Password:
+        <form action="./" method="post">
+            <input type="hidden" name="action" value="update_user_password">
+            <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
+            <input type="text" name="newpass">
+            <input type="text" name="newpassver">
+            <input type="submit" value="Update Password">
+        </form>
     </div>
     <div class="catdiv">
         <?php if($user['UserType'] == "Customer") :?>
@@ -143,7 +152,11 @@
                             <?php echo $venue["Location"];?>
                         </th>
                         <th>
-                            <?php echo intval($venue["Capacity"]);?>
+                            <?php
+                                $ticketsSold = get_tickets_sold_by_showId($show["ShowID"]);
+                                $ticketsSold = $ticketsSold["ticketcount"];
+                                echo intval($venue["Capacity"]) - $ticketsSold;
+                            ?>
                         </th>
                         <th>
                             <form action="./" method="post">
@@ -176,10 +189,6 @@
 </div>
 <br>
 <div class="positiondiv">
-    <form action="./" method="post">
-        <input class="button" type="submit" value=" Search ">
-        <input class="hidden" type="hidden" name="action" value="search">
-    </form>
     <form action="./" method="post">
         <input class="button" type="submit" value="Homepage">
     </form>
