@@ -71,13 +71,25 @@
                     <?php foreach(tickets as $ticket) : ?>
                         <?php
                             $show = get_show_by_showId($ticket["ShowID"]);
+                            $show = $show->fetch();
+                            $venue = get_venue_from_venueId($show["VenueID"]);
+                            $venue = $venue->fetch();
                         ?>
                     <tr>
                         <th>
-
+                            <?php echo $show["ShowName"];?>
                         </th>
                         <th>
                             <?php echo $ticket["Sections"]; ?>
+                        </th>
+                        <th>
+                            <?php echo $show["ShowDate"];?>
+                        </th>
+                        <th>
+                            <?php echo $venue["VenueName"];?>
+                        </th>
+                        <th>
+                            <?php echo $venue["Location"];?>
                         </th>
                     </tr>
                     <?php endforeach; ?>
