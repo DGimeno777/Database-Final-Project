@@ -41,6 +41,12 @@ function add_song_to_set_list($songID, $performanceID, $songOrder){
     return $query->fetch()['name'];
 }
 
+function update_password($password, $userID){
+    global $db;
+    $query = "update Users set Pass = '$password' where UserID = '$userID';";
+    $db->exec($query);
+}
+
 //Not Done
 function find_close_venues($venueName){
     global $db;

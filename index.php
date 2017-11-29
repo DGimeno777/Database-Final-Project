@@ -3,6 +3,7 @@ include "model/database.php";
 include "model/user_db.php";
 include "model/shows_db.php";
 include "model/venue_db.php";
+include "model/ticket_db.php";
 
 if(isset($_POST['action'])){
     $action = $_POST['action'];
@@ -92,8 +93,16 @@ else if($action == "register_go") {
 else if($action == "buy_ticket") {
     if (isset($_POST["userID"])) {
         $userID = $_POST["userID"];
-        if (isset($_POST["ticketID"])) {
-
+        if (isset($_POST["showID"])) {
+            $showID = $_POST["showID"];
+            $show = get_show_by_showId($showID);
+            $show = $show->fetch();
+            $venue = get_venue_from_venueId($show["VenueID"]);
+            $venue = $venue->fetch();
+            $ticketsSold = get_tickets_sold_by_showId($showID);
+            $ticketsSold = $ticketsSold["ticketcount"];
+            $ticketsLeft = $venue["Capacity"] - $ticketsSold;
+            create_ticket($showID, $userID);
         }
         $user = get_user_by_userId($userID);
         $user = $user->fetch();

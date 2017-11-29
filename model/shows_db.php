@@ -7,6 +7,13 @@ function get_all_shows() {
     return $query;
 }
 
+function get_show_by_showId($showId) {
+    global $db;
+    $query = "select * from shows where ShowID = '$showId'";
+    $query = $db->query($query);
+    return $query;
+}
+
 //Use Case 1
 function get_shows_by_month($month){
     global $db;
