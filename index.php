@@ -71,6 +71,9 @@ else if($action == "register_go") {
         if ($check->rowCount() <= 0) {
             $check = true;
             register_user($username,$password,$user_type);
+            $userAdded = get_user_by_username($username);
+            $userAdded = $userAdded->fetch();
+            $id = $userAdded["UserID"];
         }
         else {
             echo "User " . $username . " already exists";
