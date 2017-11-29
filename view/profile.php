@@ -68,6 +68,19 @@
                             Venue Location
                         </th>
                     </tr>
+                    <?php foreach(tickets as $ticket) : ?>
+                        <?php
+                            $show = get_show_by_showId($ticket["ShowID"]);
+                        ?>
+                    <tr>
+                        <th>
+
+                        </th>
+                        <th>
+                            <?php echo $ticket["Sections"]; ?>
+                        </th>
+                    </tr>
+                    <?php endforeach; ?>
                 </table>
             </div>
             <div>
@@ -91,6 +104,9 @@
                         </th>
                         <th>
                             Tickets Left
+                        </th>
+                        <th>
+                            <!-- Buy ticket -->
                         </th>
                     </tr>
                     <?php foreach(get_all_shows() as $show) :?>
@@ -116,6 +132,14 @@
                         </th>
                         <th>
                             <?php echo intval($venue["Capacity"]);?>
+                        </th>
+                        <th>
+                            <form action="./" method="post">
+                                <input type="submit" name="Buy" value="Buy">
+                                <input type="hidden" name="action" value="buy_ticket">
+                                <input type="hidden" name="userID" value="<?php echo $user["UserID"]?>">
+                                <input type="hidden" name="showID" value="<?php echo $show["ShowID"]?>">
+                            </form>
                         </th>
                     </tr>
                     <?php endforeach;?>
