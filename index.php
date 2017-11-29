@@ -67,7 +67,7 @@ else if($action == "register_go") {
         $password = $_POST['password'];
         $user_type = $_POST['user_type'];
         $check = get_user_by_username($username);
-        echo is_null($check);
+
         if ($check->rowCount() <= 0) {
             $check = true;
             register_user($username,$password,$user_type);
@@ -87,6 +87,20 @@ else if($action == "register_go") {
     }
     else {
         include "view/register.php";
+    }
+}
+else if($action == "buy_ticket") {
+    if (isset($_POST["userID"])) {
+        $userID = $_POST["userID"];
+        if (isset($_POST["ticketID"])) {
+
+        }
+        $user = get_user_by_userId($userID);
+        $user = $user->fetch();
+        include "view/profile.php";
+    }
+    else {
+        include "view/homepage.php";
     }
 }
 else{

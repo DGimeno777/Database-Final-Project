@@ -24,7 +24,6 @@ function get_user_by_userId($userId) {
 function register_user($username, $password, $type) {
     global $db;
     $query = "insert into users (username, pass, usertype) VALUES ('$username','$password','$type')";
-    echo $query;
     $db->exec($query);
 }
 
