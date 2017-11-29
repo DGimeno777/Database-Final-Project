@@ -68,7 +68,7 @@
                             Venue Location
                         </th>
                     </tr>
-                    <?php foreach(tickets as $ticket) : ?>
+                    <?php foreach(tickets_purchased_by_user($user["UserID"]) as $ticket) : ?>
                         <?php
                             $show = get_show_by_showId($ticket["ShowID"]);
                             $show = $show->fetch();
