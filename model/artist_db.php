@@ -2,15 +2,13 @@
 function remove_song_from_set_list($songID, $performanceID){
     global $db;
     $query = "Call remove_song_from_set_list($songID, $performanceID);";
-    $query = $db->query($query);
-    return $query;
+    $db->exec($query);
 }
 
 function add_song_to_set_list($songID, $performanceID, $songOrder){
     global $db;
-    $query = "insert into SetListSong (SongID, PerformanceID, SongOrder) values ('$songID', '$performanceID', '$songOrder');";
-    $query = $db->query($query);
-    return $query->fetch()['name'];
+    $query = "Call add_song_to_set_list($songID, $performanceID, $songOrder);";
+    $db->exec($query);
 }
 
 //Not Done

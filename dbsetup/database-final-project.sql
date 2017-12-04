@@ -240,6 +240,20 @@ BEGIN
 	delete from SetListSong where SongID = song_ID and PerformanceID = performance_ID;
  
 END //
+DELIMITER;
+
+DROP PROCEDURE IF EXISTS add_song_to_set_list;
+DELIMITER //
+CREATE PROCEDURE add_song_to_set_list
+(
+	song_ID int, performance_ID int, song_order int
+)
+BEGIN
+
+	insert into SetListSong (SongID, PerformanceID, SongOrder) values (song_ID, performance_ID, song_order);
+ 
+END //
 DELIMITER ;
+
 
 
