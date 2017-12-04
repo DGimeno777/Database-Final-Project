@@ -24,7 +24,7 @@
         </form>
     </div>
     </br>
-    Current Shows:
+    Current Performances:
     <div>
         <?php
             $currShows = shows_after_today($venue["VenueID"]);
@@ -69,7 +69,7 @@
         </table>
     </div>
     </br>
-    Past Shows:
+    Past Performances:
     <div>
         <?php
             $prevShows = shows_before_today($venue["VenueID"]);

@@ -81,6 +81,13 @@ else if($action == "register_go") {
             $userAdded = get_user_by_username($username);
             $userAdded = $userAdded->fetch();
             $id = $userAdded["UserID"];
+            
+            if ($_POST['user_type'] == 'Artist') {
+                add_artist_to_db($_POST['username'], $id);
+            }
+            if ($_POST['user_type'] == 'Venue') {
+                add_venue_to_db($_POST['username'], $id);
+            }
         }
         else {
             echo "User " . $username . " already exists";
