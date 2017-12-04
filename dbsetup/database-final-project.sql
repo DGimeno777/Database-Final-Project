@@ -1,3 +1,4 @@
+
 DROP DATABASE IF EXISTS databasefinal;
 CREATE DATABASE databasefinal;
 use databasefinal;
@@ -7,7 +8,9 @@ create table Users
 UserID INT PRIMARY KEY auto_increment,
 UserName varchar(100),
 Pass varchar(50),
-UserType ENUM ('Artist', 'Customer', 'Venue')
+UserType ENUM ('Artist', 'Customer', 'Venue'),
+Latitude float,
+Longitude float 
 );
 
 create table Artist
@@ -112,15 +115,15 @@ FOREIGN KEY (ShowID)
 );
 
 
-insert into Users (UserName, Pass, UserType) values ('U2', 'password1', 'Artist');
-insert into Users (UserName, Pass, UserType) values ('Killers', 'password1', 'Artist');
-insert into Users (UserName, Pass, UserType) values ('AlexC', 'password1', 'Artist');
-insert into Users (UserName, Pass, UserType) values ('LanaBanana', 'password1', 'Artist');
-insert into Users (UserName, Pass, UserType) values ('JAiko', 'password1', 'Artist');
-insert into Users (UserName, Pass, UserType) values ('TD', 'password1', 'Venue');
-insert into Users (UserName, Pass, UserType) values ('BOK', 'password1', 'Venue');
-insert into Users (UserName, Pass, UserType) values ('HOB', 'password1', 'Venue');
-insert into Users (UserName, Pass, UserType) values ('JHALL', 'password1', 'Venue');
+insert into Users (UserName, Pass, UserType, Latitude, Longitude) values ('U2', 'password1', 'Artist', 42.3601, 71.0589);
+insert into Users (UserName, Pass, UserType, Latitude, Longitude) values ('Killers', 'password1', 'Artist', 42.3601, 71.0589);
+insert into Users (UserName, Pass, UserType, Latitude, Longitude) values ('AlexC', 'password1', 'Artist', 42.3601, 71.0589);
+insert into Users (UserName, Pass, UserType, Latitude, Longitude) values ('LanaBanana', 'password1', 'Artist', 42.3601, 71.0589);
+insert into Users (UserName, Pass, UserType, Latitude, Longitude) values ('JAiko', 'password1', 'Artist', 42.3601, 71.0589);
+insert into Users (UserName, Pass, UserType, Latitude, Longitude) values ('TD', 'password1', 'Venue', 42.3601, 71.0589);
+insert into Users (UserName, Pass, UserType, Latitude, Longitude) values ('BOK', 'password1', 'Venue', 42.3601, 71.0589);
+insert into Users (UserName, Pass, UserType, Latitude, Longitude) values ('HOB', 'password1', 'Venue', 42.3601, 71.0589);
+insert into Users (UserName, Pass, UserType, Latitude, Longitude) values ('JHALL', 'password1', 'Venue', 42.3601, 71.0589);
 
 insert into Venue (VenueName, Capacity, Location, UserID) values ('TD Garden', 19580, 'Boston', 6);
 insert into Venue (VenueName, Capacity, Location, UserID) values ('Bok Center', 10, 'Boston', 7);
@@ -241,6 +244,19 @@ BEGIN
  
 END //
 DELIMITER;
+
+DROP PROCEDURE IF EXISTS add_song_to_set_list;
+DELIMITER //
+CREATE PROCEDURE add_song_to_set_list
+(
+	song_ID int, performance_ID int, song_order int
+)
+BEGIN
+
+	insert into SetListSong (SongID, PerformanceID, SongOrder) values (song_ID, performance_ID, song_order);
+ 
+END //
+DELIMITER ;
 
 DROP PROCEDURE IF EXISTS add_song_to_set_list;
 DELIMITER //
