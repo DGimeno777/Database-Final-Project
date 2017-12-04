@@ -44,6 +44,9 @@
         <?php echo $user['UserName']?>
         <br>
         <?php echo $user['UserType']?>
+        <br>
+        Location (Lat,Lon):
+        <?php echo $user['Latitude'] . ", " . $user['Longitude'];?>
     </div>
     <div class="title">
         Update Password:
