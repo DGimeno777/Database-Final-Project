@@ -289,9 +289,6 @@ BEGIN
 END //
 DELIMITER ;
 
--- CALL get_tickets_sold_by_showId(1)
-
-
 
 DROP PROCEDURE IF EXISTS create_ticket;
 DELIMITER //
@@ -449,17 +446,17 @@ DELIMITER ;
 
 -- END shows_db.php-------------------------------------------------------------------------------------------------------
 
+-- StART venue_db.php-------------------------------------------------------------------------------------------------------
+DROP PROCEDURE IF EXISTS get_average_venue_capacity;
 
+DELIMITER //
 
+CREATE PROCEDURE get_average_venue_capacity($artistID int)
+BEGIN
+select avg(Capacity) from Performs natural join Shows natural join Venue where ArtistID = '$artistID';
+END //
 
-
-
-
-
-
-
-
-
+DELIMITER ;
 
 
 
