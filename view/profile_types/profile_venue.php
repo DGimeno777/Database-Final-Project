@@ -48,22 +48,21 @@
                 </th>
             </tr>
            <?php foreach($currShows as $show) :?>
-               <?php echo "Found"?>
                 <tr>
                     <th>
-                        <?php $show["ShowName"]; ?>
+                        <?php echo $show["ShowName"]; ?>
                     </th>
                     <th>
-                        <?php $show["ShowDate"]; ?>
-                    </th>
-                    <th>
-
+                        <?php echo $show["ShowDate"]; ?>
                     </th>
                     <th>
 
                     </th>
                     <th>
-                        <?php $show["TicketPrice"]; ?>
+
+                    </th>
+                    <th>
+                        <?php echo $show["TicketPrice"]; ?>
                     </th>
                 </tr>
            <?php endforeach; ?>
