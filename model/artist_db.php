@@ -15,5 +15,6 @@ function add_song_to_set_list($songID, $performanceID, $songOrder){
 function get_all_artists(){
     global $db;
     $query = "select * from Artist;";
-    $db->exec($query);
+    $query = $db->query($query);
+    return $query;
 }
