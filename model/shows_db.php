@@ -59,3 +59,39 @@ function find_similar_artists_2($artistID){
     $query = $db->query($query);
     return $query;
 }
+
+
+function shows_before_today(){
+    global $db;
+    $query = "select * from shows join Venue using (VenueID) where ShowDate < NOW();";
+    $query = $db->query($query);
+    return $query;
+}
+
+
+function shows_after_today(){
+    global $db;
+    $query = "select * from shows join Venue using (VenueID) where ShowDate > NOW();";
+    $query = $db->query($query);
+    return $query;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
