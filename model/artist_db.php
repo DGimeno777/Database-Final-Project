@@ -18,3 +18,10 @@ function get_all_artists(){
     $query = $db->query($query);
     return $query;
 }
+
+function get_artist_by_user_id($userID){
+    global $db;
+    $query = "select * from Artist where UserID = '$userID'";
+    $query = $db->query($query);
+    return $query;
+}
