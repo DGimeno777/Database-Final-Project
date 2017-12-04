@@ -19,3 +19,10 @@ function find_close_venues($venueName){
     $query = "select * from Venue where VenueName = '$venueName'";
     $db->exec($query);
 }
+
+//Gets all the artists in the database
+function get_all_artists(){
+    global $db;
+    $query = "select * from Artist;";
+    $db->exec($query);
+}
