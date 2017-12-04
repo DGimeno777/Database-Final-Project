@@ -257,3 +257,50 @@ DELIMITER ;
 
 
 
+DROP PROCEDURE IF EXISTS get_tickets_sold_by_showId;
+
+DELIMITER //
+
+CREATE PROCEDURE get_tickets_sold_by_showId($showId int)
+BEGIN
+
+ select count(*) as ticketcount from ticket WHERE ShowID = $showId;
+ 
+END //
+
+DELIMITER ;
+
+-- CALL get_tickets_sold_by_showId(1)
+
+
+
+DROP PROCEDURE IF EXISTS create_ticket;
+
+DELIMITER //
+
+CREATE PROCEDURE create_ticket($showId int, $userId int)
+BEGIN
+
+insert into ticket (Sections, UserID, ShowID) VALUES ('GA','$userId','$showId');
+
+END //
+
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS tickets_purchased_by_user;
+
+DELIMITER //
+
+CREATE PROCEDURE tickets_purchased_by_user($userId int)
+BEGIN
+select * from Ticket where UserID =  $userID;
+
+END //
+
+DELIMITER ;
+
+
+
+
+
