@@ -458,6 +458,57 @@ END //
 
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS add_show;
+
+DELIMITER //
+
+CREATE PROCEDURE add_show($showname varchar(100), $showdate DATE , $ticketPrice int, $venueID int)
+BEGIN
+insert into shows (ShowName, Showdate, TicketPrice, VenueID) VALUES ('$showname', '$showdate', '$ticketPrice', '$venueID');
+END //
+
+DELIMITER ;
+
+-- END venue_db.php-------------------------------------------------------------------------------------------------------
+
+-- StART Performs_db) -----------------------------------------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS get_headliner;
+
+DELIMITER //
+
+CREATE PROCEDURE get_headliner($showid int)
+BEGIN
+select ArtistName from Shows join Performs using (ShowID) join Artist using (ArtistID)
+where Shows.ShowID = $showid and Headline = 'Headline';
+END //
+
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS get_opener;
+
+DELIMITER //
+
+CREATE PROCEDURE get_opener($showid int)
+BEGIN
+select ArtistName  from Shows join Performs using (ShowID) join Artist using (ArtistID)
+where Shows.ShowID = $showid and Headline = 'Opener';
+END //
+
+DELIMITER ;
+
+
+-- END Performs_db.php) -----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
 
 
 
