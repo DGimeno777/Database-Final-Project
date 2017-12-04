@@ -3,6 +3,7 @@ include "model/database.php";
 include "model/user_db.php";
 include "model/shows_db.php";
 include "model/venue_db.php";
+include "model/artist_db.php";
 include "model/ticket_db.php";
 
 if(isset($_POST['action'])){
