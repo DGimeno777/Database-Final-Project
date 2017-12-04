@@ -377,9 +377,9 @@ DROP PROCEDURE IF EXISTS remove_artist_from_show;
 
 DELIMITER //
 
-CREATE PROCEDURE remove_artist_from_show($artist int, $show int)
+CREATE PROCEDURE remove_artist_from_show(artist int, show int)
 BEGIN
-delete from Performance where ArtistID = '$artist' and ShowID = '$show';
+delete from Performance where ArtistID = artist and ShowID = show;
 END //
 
 DELIMITER ;
@@ -389,9 +389,9 @@ DROP PROCEDURE IF EXISTS shows_for_artist_before_given_date;
 
 DELIMITER //
 
-CREATE PROCEDURE shows_for_artist_before_given_date($artistID int, $showDate date)
+CREATE PROCEDURE shows_for_artist_before_given_date(artistID int, showDate date)
 BEGIN
-select * from Performance natural join Shows where ArtistID = '$artistID' and ShowDate < '$showDate';
+select * from Performance natural join Shows where ArtistID = artistID and ShowDate < showDate;
 END //
 
 DELIMITER ;
@@ -403,7 +403,7 @@ DELIMITER //
 
 CREATE PROCEDURE find_similar_artists(artistID int)
 BEGIN
-select * from Artist where Genre = (select Genre from Artist where ArtistID = 'artistID');
+select * from Artist where Genre = (select Genre from Artist where ArtistID = artistID);
 END //
 
 DELIMITER ;
@@ -479,7 +479,7 @@ DELIMITER //
 
 CREATE PROCEDURE get_headliner($showid int)
 BEGIN
-select ArtistName from Shows join Performs using (ShowID) join Artist using (ArtistID)
+select * from Shows join Performs using (ShowID) join Artist using (ArtistID)
 where Shows.ShowID = $showid and Headline = 'Headline';
 END //
 
@@ -492,7 +492,7 @@ DELIMITER //
 
 CREATE PROCEDURE get_opener($showid int)
 BEGIN
-select ArtistName  from Shows join Performs using (ShowID) join Artist using (ArtistID)
+select *  from Shows join Performs using (ShowID) join Artist using (ArtistID)
 where Shows.ShowID = $showid and Headline = 'Opener';
 END //
 
@@ -502,11 +502,9 @@ DELIMITER ;
 
 
 
-
 insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Coldplay', '2017-12-23' , 80, 2);
 insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Imagine Dragons', '2017-11-10' , 80 , 2);
 insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Oasis', '2017-10-02' , 30 , 2);
-
 
 
 
