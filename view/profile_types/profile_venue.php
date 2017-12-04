@@ -6,13 +6,14 @@
             <?php
                 $allArtists = get_all_artists();
             ?>
-            <select>
+            <!-- Not needed here
+            <select name="showArtist">
                 <?php foreach($allArtists as $artist) :?>
                     <option value="<?php echo $artist["ArtistID"]; ?>">
                         <?php echo $artist["ArtistName"]; ?>
                     </option>
                 <?php endforeach; ?>
-            </select>
+            </select>-->
         </form>
     </div>
     </br>
@@ -31,7 +32,13 @@
                         Date
                     </th>
                     <th>
-
+                        TicketPrice
+                    </th>
+                    <th>
+                        Headline
+                    </th>
+                    <th>
+                        Openers
                     </th>
                 </tr>
             </table>
