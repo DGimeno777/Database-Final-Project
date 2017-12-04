@@ -508,6 +508,37 @@ insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Imagine Dr
 insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Oasis', '2017-10-02' , 30 , 2);
 
 
+-- Start Location Calculation -----
+DROP PROCEDURE IF EXISTS get_lat_and_long;
+
+DELIMITER //
+
+CREATE PROCEDURE get_lat_and_long(user1_ID int, user2_ID int)
+BEGIN
+	DECLARE user1_lat FLOAT;
+    DECLARE user1_long FLOAT;
+    DECLARE user2_lat FLOAT;
+    DECLARE user2_long FLOAT;
+    
+    select Latitude, Longitude
+		into user1_lat, user1_long
+			from Users
+				where UserId = user1_ID;
+                
+	select Latitude, Longitude
+		into user2_lat, user2_long
+			from Users
+				where UserId = user2_ID;
+    
+    select user1_lat, user1_long, user2_lat, user2_long;
+    
+END //
+
+DELIMITER ;
+
+-- End Location Calculation --
+
+
 
 
 
