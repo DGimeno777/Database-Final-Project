@@ -31,6 +31,14 @@
             <input type="radio" name="user_type" value="artist"> Artist<br>
             <input type="radio" name="user_type" value="customer"> Customer
             <br>
+            <span>Location:</span>
+            <br>
+            Latitude:
+            <input type="number" name="latitude">
+            <br>
+            Longitude:
+            <input type="number" name="longitude">
+            <br>
             <input type="submit" value="Register">
             <input type="hidden" name="action" value="register_go">
         </form>

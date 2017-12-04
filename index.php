@@ -64,15 +64,19 @@ else if($action == "register_go") {
         isset($_POST['password']) &&
         isset($_POST['password_verify']) &&
         $_POST['password'] == $_POST['password_verify'] &&
-        isset($_POST['user_type'])) {
+        isset($_POST['user_type']) &&
+        isset($_POST['latitude']) &&
+        isset($_POST['longitude'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
         $user_type = $_POST['user_type'];
+        $latitude = $_POST["latitude"];
+        $longitude = $_POST["longitude"];
         $check = get_user_by_username($username);
 
         if ($check->rowCount() <= 0) {
             $check = true;
-            register_user($username,$password,$user_type);
+            register_user($username,$password,$user_type, $latitude, $longitude);
             $userAdded = get_user_by_username($username);
             $userAdded = $userAdded->fetch();
             $id = $userAdded["UserID"];
