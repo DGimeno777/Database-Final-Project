@@ -1,9 +1,9 @@
 <?php
-    $venue = get_venue_by_user_id($user["UserID"]);
-    $venue = $venue->fetch();
+    $artist = get_artist_by_user_id($user["UserID"]);
+    $artist = $artist->fetch();
 ?>
 <div xmlns="http://www.w3.org/1999/html">
-    Add Show:
+    Add Song:
     <div>
         <form>
             <input type="text" name="showname">
