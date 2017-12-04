@@ -21,9 +21,9 @@ function get_user_by_userId($userId) {
     return $query;
 }
 
-function register_user($username, $password, $type) {
+function register_user($username, $password, $type, $latitude, $longitude) {
     global $db;
-    $query = "insert into users (username, pass, usertype) VALUES ('$username','$password','$type')";
+    $query = "insert into users (username, pass, usertype, Latitude, Longitude) VALUES ('$username','$password','$type', '$latitude', '$longitude')";
     $db->exec($query);
 }
 
