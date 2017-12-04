@@ -323,6 +323,15 @@ BEGIN
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS get_user_no_password;
+
+DELIMITER //
+CREATE PROCEDURE get_user_no_password(user_name varchar(50))
+BEGIN
+	select * from users where username = user_name;
+END //
+DELIMITER ;
+
 
 
 
