@@ -1,5 +1,5 @@
 <?php
-    $venue = get_venue_from_user_id();
+    $venue = get_venue_by_user_id($user["UserID"]);
     $venue = $venue->fetch();
 ?>
 <div xmlns="http://www.w3.org/1999/html">
@@ -29,27 +29,44 @@
         <?php
             $currShows = shows_after_today($venue["VenueID"]);
         ?>
+        <table>
+            <tr>
+                <th>
+                    ShowName
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Headline
+                </th>
+                <th>
+                    Openers
+                </th>
+                <th>
+                    TicketPrice
+                </th>
+            </tr>
         <?php foreach($currShows as $show) :?>
-            <table>
-                <tr>
-                    <th>
-                        ShowName
-                    </th>
-                    <th>
-                        Date
-                    </th>
-                    <th>
-                        TicketPrice
-                    </th>
-                    <th>
-                        Headline
-                    </th>
-                    <th>
-                        Openers
-                    </th>
-                </tr>
-            </table>
+            <tr>
+                <th>
+                    <?php $show["ShowName"]; ?>
+                </th>
+                <th>
+                    <?php $show["ShowDate"]; ?>
+                </th>
+                <th>
+
+                </th>
+                <th>
+
+                </th>
+                <th>
+                    <?php $show["TicketPrice"]; ?>
+                </th>
+            </tr>
         <?php endforeach; ?>
+        </table>
     </div>
     </br>
     Past Shows:
