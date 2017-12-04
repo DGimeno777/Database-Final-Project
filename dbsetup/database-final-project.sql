@@ -148,6 +148,10 @@ insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Killin IT'
 insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Lana at the Garden', '2018-1-13', 35, 1);
 insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Lana is Blue', '2018-2-17', 40, 3);
 
+insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Coldplay', '2017-12-23' , 80, 2);
+insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Imagine Dragons', '2017-11-10' , 80 , 2);
+insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Oasis', '2017-10-02' , 30 , 2);
+
 insert into Performs (ArtistID, ShowID, Headline) values (1, 1, 'Headline');
 insert into Performs (ArtistID, ShowID, Headline) values (1, 2, 'Headline');
 insert into Performs (ArtistID, ShowID, Headline) values (1, 3, 'Headline');
@@ -155,6 +159,9 @@ insert into Performs (ArtistID, ShowID, Headline) values (2, 4, 'Headline');
 insert into Performs (ArtistID, ShowID, Headline) values (3, 4, 'Opener');
 insert into Performs (ArtistID, ShowID, Headline) values (4, 5, 'Headline');
 insert into Performs (ArtistID, ShowID, Headline) values (5, 5, 'Opener');
+
+insert into Performs (ArtistID, ShowID, Headline) values (4, 6, 'Headline');
+insert into Performs (ArtistID, ShowID, Headline) values (5, 6, 'Headline');
 
 DROP TRIGGER IF EXISTS max_ticket_limit;
 
@@ -543,12 +550,6 @@ END //
 DELIMITER ;
 
 -- END Performs_db.php) -----------------------------------------------------------------------------------------------------
-
-
-
-insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Coldplay', '2017-12-23' , 80, 2);
-insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Imagine Dragons', '2017-11-10' , 80 , 2);
-insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Oasis', '2017-10-02' , 30 , 2);
 
 
 -- Start Location Calculation -----
