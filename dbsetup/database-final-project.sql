@@ -281,10 +281,13 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS get_tickets_sold_by_showId;
 DELIMITER //
-CREATE PROCEDURE get_tickets_sold_by_showId($showId int)
+CREATE PROCEDURE get_tickets_sold_by_showId
+(
+show_Id int
+)
 BEGIN
 
- select count(*) as ticketcount from ticket WHERE ShowID = $showId;
+ select count(*) as ticketcount from ticket WHERE ShowID = show_Id;
  
 END //
 DELIMITER ;
@@ -292,22 +295,28 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS create_ticket;
 DELIMITER //
-CREATE PROCEDURE create_ticket($showId int, $userId int)
+CREATE PROCEDURE create_ticket
+(
+show_Id int, user_Id int
+)
 BEGIN
 
-insert into ticket (Sections, UserID, ShowID) VALUES ('GA','$userId','$showId');
+insert into ticket (Sections, UserID, ShowID) VALUES ('GA', user_Id, show_id);
 
 END //
-DELIMITER ;
+DELIMITER;
 
 
 DROP PROCEDURE IF EXISTS tickets_purchased_by_user;
 
 DELIMITER //
-CREATE PROCEDURE tickets_purchased_by_user($userId int)
+CREATE PROCEDURE tickets_purchased_by_user
+(
+userId int
+)
 BEGIN
 
-	select * from Ticket where UserID =  $userID;
+	select * from Ticket where UserID =  userId;
 
 END //
 DELIMITER ;
@@ -315,7 +324,10 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS get_user;
 
 DELIMITER //
-CREATE PROCEDURE get_user(user_name varchar(50), user_password varchar(50))
+CREATE PROCEDURE get_user
+(
+user_name varchar(50), user_password varchar(50)
+)
 BEGIN
 	select * from users where username = user_name and pass = user_password;
 END //
@@ -330,7 +342,6 @@ BEGIN
 END //
 DELIMITER ;
 
-
 -- END  ticket_db.php-------------------------------------------------------------------------------------------------------
 
 -- START shows_db.php-------------------------------------------------------------------------------------------------------
@@ -339,9 +350,12 @@ DROP PROCEDURE IF EXISTS get_show_by_showId;
 
 DELIMITER //
 
-CREATE PROCEDURE get_show_by_showId($showId int)
+CREATE PROCEDURE get_show_by_showId
+(
+showId int
+)
 BEGIN
-select * from shows where ShowID = '$showId';
+select * from shows where ShowID = showId;
 
 END //
 
@@ -352,9 +366,12 @@ DROP PROCEDURE IF EXISTS get_shows_by_month;
 
 DELIMITER //
 
-CREATE PROCEDURE get_shows_by_month($month int)
+CREATE PROCEDURE get_shows_by_month
+(
+month_int int
+)
 BEGIN
-select * from Shows where month(ShowDate) = '$month' order by ShowDate;
+select * from Shows where month(ShowDate) = month_int order by ShowDate;
 
 END //
 
@@ -365,9 +382,12 @@ DROP PROCEDURE IF EXISTS add_artist_to_show;
 
 DELIMITER //
 
-CREATE PROCEDURE add_artist_to_show($artist int, $show int, $headline varchar(20))
+CREATE PROCEDURE add_artist_to_show
+(
+artist int, showid int, headline varchar(20)
+)
 BEGIN
-insert into Performance (ArtistID, ShowID, Headline) values ('$artist', '$show', '$headline');
+insert into Performance (ArtistID, ShowID, Headline) values (artist, showid, headline);
 END //
 
 DELIMITER ;
@@ -377,9 +397,9 @@ DROP PROCEDURE IF EXISTS remove_artist_from_show;
 
 DELIMITER //
 
-CREATE PROCEDURE remove_artist_from_show(artist int, show int)
+CREATE PROCEDURE remove_artist_from_show(artist int, showid int)
 BEGIN
-delete from Performance where ArtistID = artist and ShowID = show;
+delete from Performance where ArtistID = artist and ShowID = showid;
 END //
 
 DELIMITER ;
@@ -389,7 +409,10 @@ DROP PROCEDURE IF EXISTS shows_for_artist_before_given_date;
 
 DELIMITER //
 
-CREATE PROCEDURE shows_for_artist_before_given_date(artistID int, showDate date)
+CREATE PROCEDURE shows_for_artist_before_given_date
+(
+artistID int, showDate date
+)
 BEGIN
 select * from Performance natural join Shows where ArtistID = artistID and ShowDate < showDate;
 END //
@@ -401,7 +424,10 @@ DROP PROCEDURE IF EXISTS find_similar_artists;
 
 DELIMITER //
 
-CREATE PROCEDURE find_similar_artists(artistID int)
+CREATE PROCEDURE find_similar_artists
+(
+artistID int
+)
 BEGIN
 select * from Artist where Genre = (select Genre from Artist where ArtistID = artistID);
 END //
@@ -413,7 +439,10 @@ DROP PROCEDURE IF EXISTS number_times_headlined;
 
 DELIMITER //
 
-CREATE PROCEDURE number_times_headlined(artistID int)
+CREATE PROCEDURE number_times_headlined
+(
+artistID int
+)
 BEGIN
 select count(*), Headline from Performs where ArtistID = artistID  group by Headline;
 END //
@@ -425,9 +454,12 @@ DROP PROCEDURE IF EXISTS shows_before_today;
 
 DELIMITER //
 
-CREATE PROCEDURE shows_before_today($artistID int)
+CREATE PROCEDURE shows_before_today
+(
+venueid int
+)
 BEGIN
-select * from shows join Venue using (VenueID) where ShowDate < NOW();
+select * from shows join Venue using (VenueID) where ShowDate < NOW() and Venue.venueid = venueid;
 END //
 
 DELIMITER ;
@@ -437,9 +469,9 @@ DROP PROCEDURE IF EXISTS shows_after_today;
 
 DELIMITER //
 
-CREATE PROCEDURE shows_after_today($artistID int)
+CREATE PROCEDURE shows_after_today(venueid int)
 BEGIN
-select * from shows join Venue using (VenueID) where ShowDate >= NOW();
+select * from shows join Venue using (VenueID) where ShowDate >= NOW() and Venue.venueid = venueid;
 END //
 
 DELIMITER ;
@@ -451,9 +483,12 @@ DROP PROCEDURE IF EXISTS get_average_venue_capacity;
 
 DELIMITER //
 
-CREATE PROCEDURE get_average_venue_capacity($artistID int)
+CREATE PROCEDURE get_average_venue_capacity
+(
+artistID int
+)
 BEGIN
-select avg(Capacity) from Performs natural join Shows natural join Venue where ArtistID = '$artistID';
+select avg(Capacity) from Performs natural join Shows natural join Venue where ArtistID = artistID;
 END //
 
 DELIMITER ;
@@ -462,9 +497,12 @@ DROP PROCEDURE IF EXISTS add_show;
 
 DELIMITER //
 
-CREATE PROCEDURE add_show(showname varchar(100), showdate DATE , ticketPrice int, venueID int)
+CREATE PROCEDURE add_show
+(
+showname varchar(100), showdate DATE , ticketPrice int, venueID int
+)
 BEGIN
-insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) VALUES ('showname', showdate, ticketPrice, venueID);
+insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) VALUES (showname, showdate, ticketPrice, venueID);
 END //
 
 DELIMITER ;
@@ -477,10 +515,13 @@ DROP PROCEDURE IF EXISTS get_headliner;
 
 DELIMITER //
 
-CREATE PROCEDURE get_headliner($showid int)
+CREATE PROCEDURE get_headliner
+(
+showid int
+)
 BEGIN
 select * from Shows join Performs using (ShowID) join Artist using (ArtistID)
-where Shows.ShowID = $showid and Headline = 'Headline';
+where Shows.ShowID = showid and Headline = 'Headline';
 END //
 
 DELIMITER ;
@@ -490,10 +531,13 @@ DROP PROCEDURE IF EXISTS get_opener;
 
 DELIMITER //
 
-CREATE PROCEDURE get_opener($showid int)
+CREATE PROCEDURE get_opener
+(
+showid int
+)
 BEGIN
 select *  from Shows join Performs using (ShowID) join Artist using (ArtistID)
-where Shows.ShowID = $showid and Headline = 'Opener';
+where Shows.ShowID = showid and Headline = 'Opener';
 END //
 
 DELIMITER ;
