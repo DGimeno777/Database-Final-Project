@@ -47,25 +47,26 @@
                     TicketPrice
                 </th>
             </tr>
-        <?php foreach($currShows as $show) :?>
-            <tr>
-                <th>
-                    <?php $show["ShowName"]; ?>
-                </th>
-                <th>
-                    <?php $show["ShowDate"]; ?>
-                </th>
-                <th>
+           <?php foreach($currShows as $show) :?>
+               <?php echo "Found"?>
+                <tr>
+                    <th>
+                        <?php $show["ShowName"]; ?>
+                    </th>
+                    <th>
+                        <?php $show["ShowDate"]; ?>
+                    </th>
+                    <th>
 
-                </th>
-                <th>
+                    </th>
+                    <th>
 
-                </th>
-                <th>
-                    <?php $show["TicketPrice"]; ?>
-                </th>
-            </tr>
-        <?php endforeach; ?>
+                    </th>
+                    <th>
+                        <?php $show["TicketPrice"]; ?>
+                    </th>
+                </tr>
+           <?php endforeach; ?>
         </table>
     </div>
     </br>
