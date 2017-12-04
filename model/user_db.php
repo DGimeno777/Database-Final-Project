@@ -27,20 +27,6 @@ function register_user($username, $password, $type) {
     $db->exec($query);
 }
 
-function remove_song_from_setlist($songID, $performanceID){
-    global $db;
-    $query = "delete from SetListSong where SongID = '$songID' and PerformanceID = '$performanceID';";
-    $query = $db->query($query);
-    return $query;
-}
-
-function add_song_to_set_list($songID, $performanceID, $songOrder){
-    global $db;
-    $query = "insert into SetListSong (SongID, PerformanceID, SongOrder) values ('$songID', '$performanceID', '$songOrder');";
-    $query = $db->query($query);
-    return $query->fetch()['name'];
-}
-
 function update_password($password, $userID){
     global $db;
     $query = "update Users set Pass = '$password' where UserID = '$userID';";

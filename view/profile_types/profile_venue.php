@@ -2,11 +2,14 @@
     Add Show:
     <div>
         <form>
-            <input type="text" name="Showname">
+            <input type="text" name="showname">
+            <input type="date" name="showdate">
+            <input type="number" name="ticketprice">
+            <!-- Not needed here
             <?php
                 $allArtists = get_all_artists();
             ?>
-            <!-- Not needed here
+
             <select name="showArtist">
                 <?php foreach($allArtists as $artist) :?>
                     <option value="<?php echo $artist["ArtistID"]; ?>">
