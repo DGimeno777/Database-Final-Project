@@ -10,7 +10,13 @@ UserName varchar(100),
 Pass varchar(50),
 UserType ENUM ('Artist', 'Customer', 'Venue'),
 Latitude float,
-Longitude float 
+Longitude float,
+
+Check (Latitude >= -90),
+Check (Latitude <= 90),
+Check (Longitude >= -180),
+Check (Longitude <= 180)
+
 );
 
 create table Artist
@@ -31,7 +37,6 @@ VenueID INT PRIMARY KEY auto_increment,
 UserID INT,
 VenueName varchar(100),
 Capacity INT,
-Location varchar(100),
 
 CONSTRAINT venue_user_fk
 FOREIGN KEY (UserID)
@@ -125,10 +130,10 @@ insert into Users (UserName, Pass, UserType, Latitude, Longitude) values ('BOK',
 insert into Users (UserName, Pass, UserType, Latitude, Longitude) values ('HOB', 'password1', 'Venue', 42.3601, 71.0589);
 insert into Users (UserName, Pass, UserType, Latitude, Longitude) values ('JHALL', 'password1', 'Venue', 42.3601, 71.0589);
 
-insert into Venue (VenueName, Capacity, Location, UserID) values ('TD Garden', 19580, 'Boston', 6);
-insert into Venue (VenueName, Capacity, Location, UserID) values ('Bok Center', 10, 'Boston', 7);
-insert into Venue (VenueName, Capacity, Location, UserID) values ('House of Blues', 2500, 'Boston', 8);
-insert into Venue (VenueName, Capacity, Location, UserID) values ('Jordan Hall', 1019, 'Boston', 9);
+insert into Venue (VenueName, Capacity, UserID) values ('TD Garden', 19580, 6);
+insert into Venue (VenueName, Capacity, UserID) values ('Bok Center', 10, 7);
+insert into Venue (VenueName, Capacity, UserID) values ('House of Blues', 2500, 8);
+insert into Venue (VenueName, Capacity, UserID) values ('Jordan Hall', 1019, 9);
 
 insert into Artist (ArtistName, Genre, UserID) values ('U2', 'Alternative Rock', 1);
 insert into Artist (ArtistName, Genre, UserID) values ('The Killers', 'Rock', 2);
@@ -307,13 +312,11 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS tickets_purchased_by_user;
 
 DELIMITER //
-
 CREATE PROCEDURE tickets_purchased_by_user($userId int)
 BEGIN
 select * from Ticket where UserID =  $userID;
 
 END //
-
 DELIMITER ;
 
 
