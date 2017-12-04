@@ -108,6 +108,9 @@
                 <th>
                     TicketPrice
                 </th>
+                <th>
+                    Edit Show
+                </th>
             </tr>
             <?php foreach($prevShows as $show) :?>
                 <?php
@@ -135,6 +138,14 @@
                     </th
                     <th>
                         <?php echo $show["TicketPrice"]; ?>
+                    </th>
+                    <th>
+                        <form action="./" method="post">
+                            <input type="submit" value="Edit">
+                            <input type="hidden" name="action" value="edit_page">
+                            <input type="hidden" name="showID" value="<?php echo $show["ShowID"];?>">
+                            <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
+                        </form>
                     </th>
                 </tr>
             <?php endforeach; ?>
