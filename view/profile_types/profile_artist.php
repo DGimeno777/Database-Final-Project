@@ -6,9 +6,9 @@
     Add Song:
     <div>
         <form>
-            <input type="text" name="showname">
-            <input type="date" name="showdate">
-            <input type="number" name="ticketprice">
+            <input type="text" name="songname">
+            <input type="text" name="performancename">
+            <input type="number" name="songorder">
             <!-- Not needed here
             <?php
                 $allArtists = get_all_artists();
