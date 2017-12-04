@@ -1,12 +1,12 @@
 <?php
-$dsn = 'mysql:host=localhost;dbname=databasefinal';
+$dsn = 'mysql:host=127.0.0.1;dbname=databasefinal';
 $username = 'project_user';
 $password = 'password123';
 try {
     $db = new PDO($dsn, $username, $password);
 } catch (PDOException $e) {
     $error_message = $e->getMessage();
-    include('..//database_error.php');
-    exit();
+    echo $error_message;//include('..//database_error.php');
+    //exit();
 }
 ?>
