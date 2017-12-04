@@ -74,8 +74,43 @@
         <?php
             $prevShows = shows_before_today($venue["VenueID"]);
         ?>
-        <?php foreach($currShows as $show) :?>
+        <table>
+            <tr>
+                <th>
+                    ShowName
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Headline
+                </th>
+                <th>
+                    Openers
+                </th>
+                <th>
+                    TicketPrice
+                </th>
+            </tr>
+            <?php foreach($prevShows as $show) :?>
+                <tr>
+                    <th>
+                        <?php echo $show["ShowName"]; ?>
+                    </th>
+                    <th>
+                        <?php echo $show["ShowDate"]; ?>
+                    </th>
+                    <th>
 
-        <?php endforeach; ?>
+                    </th>
+                    <th>
+
+                    </th>
+                    <th>
+                        <?php echo $show["TicketPrice"]; ?>
+                    </th>
+                </tr>
+            <?php endforeach; ?>
+        </table>
     </div>
 </div>
