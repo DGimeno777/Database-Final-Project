@@ -13,9 +13,9 @@ function create_ticket($showId, $userId) {
     $db->exec($query);
 }
 
-function number_of_tickets_purchased($userID){
+function tickets_purchased_by_user($userID){
     global $db;
-    $query = "select count(*) as ticket_count from Ticket where UserID =  '$userID';";
+    $query = "select * from Ticket where UserID =  '$userID';";
     $query = $db->query($query);
     return $query;
 }

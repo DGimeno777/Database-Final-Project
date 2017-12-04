@@ -36,7 +36,7 @@ else if($action == "login_go") {
         isset($_POST['password'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
-        if (get_user_by_username($username)->rowCount() > 0) { // check to see if user exists
+        if (get_user_by_username_and_password($username,$password)->rowCount() > 0) { // check to see if user exists
             $check = true;
             $user = get_user_by_username_and_password($username, $password)->fetch();
             $id = $user["UserID"];
@@ -90,6 +90,25 @@ else if($action == "register_go") {
         include "view/register.php";
     }
 }
+else if($action == "update_user_password") {
+    if(isset($_POST["userID"])) {
+        $userID = $_POST["userID"];
+        if (isset($_POST["newpass"]) &&
+            isset($_POST["newpassver"]) &&
+            trim($_POST["newpass"]) != "" &&
+            $_POST["newpass"] == $_POST["newpassver"]) {
+            update_password($_POST["newpass"], $userID);
+            echo "Password updated!";
+        }
+        $user = get_user_by_userId($userID);
+        $user = $user->fetch();
+        include "view/profile.php";
+    }
+    else {
+        include "view/homepage.php";
+    }
+
+}
 else if($action == "buy_ticket") {
     if (isset($_POST["userID"])) {
         $userID = $_POST["userID"];
@@ -102,7 +121,12 @@ else if($action == "buy_ticket") {
             $ticketsSold = get_tickets_sold_by_showId($showID);
             $ticketsSold = $ticketsSold["ticketcount"];
             $ticketsLeft = $venue["Capacity"] - $ticketsSold;
-            create_ticket($showID, $userID);
+            if ($ticketsLeft > 0) {
+                create_ticket($showID, $userID);
+            }
+            else {
+                echo "Could not buy ticket - Show sold out!";
+            }
         }
         $user = get_user_by_userId($userID);
         $user = $user->fetch();
