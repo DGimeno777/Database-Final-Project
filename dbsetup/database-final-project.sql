@@ -163,6 +163,21 @@ insert into Performs (ArtistID, ShowID, Headline) values (5, 5, 'Opener');
 insert into Performs (ArtistID, ShowID, Headline) values (4, 6, 'Headline');
 insert into Performs (ArtistID, ShowID, Headline) values (5, 6, 'Headline');
 
+DROP TRIGGER IF EXISTS future_shows_only;
+
+DELIMITER //
+CREATE TRIGGER future_shows_only
+	BEFORE insert ON Shows
+    FOR EACH ROW
+BEGIN
+            
+	IF (New.ShowDate < Now()) THEN
+			SIGNAL SQLSTATE 'HY000'
+				SET MESSAGE_TEXT = 'You can not add a show after it has already happened';
+	END IF;
+END; //
+DELIMITER ;
+
 DROP TRIGGER IF EXISTS max_ticket_limit;
 
 DELIMITER //
