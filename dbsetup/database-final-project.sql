@@ -401,9 +401,9 @@ DROP PROCEDURE IF EXISTS find_similar_artists;
 
 DELIMITER //
 
-CREATE PROCEDURE find_similar_artists($artistID int)
+CREATE PROCEDURE find_similar_artists(artistID int)
 BEGIN
-select * from Artist where Genre = (select Genre from Artist where ArtistID = '$artistID');
+select * from Artist where Genre = (select Genre from Artist where ArtistID = 'artistID');
 END //
 
 DELIMITER ;
@@ -413,9 +413,9 @@ DROP PROCEDURE IF EXISTS number_times_headlined;
 
 DELIMITER //
 
-CREATE PROCEDURE number_times_headlined($artistID int)
+CREATE PROCEDURE number_times_headlined(artistID int)
 BEGIN
-select count(*), Headline from Performs where ArtistID = 1  group by Headline;
+select count(*), Headline from Performs where ArtistID = artistID  group by Headline;
 END //
 
 DELIMITER ;
@@ -462,9 +462,9 @@ DROP PROCEDURE IF EXISTS add_show;
 
 DELIMITER //
 
-CREATE PROCEDURE add_show($showname varchar(100), $showdate DATE , $ticketPrice int, $venueID int)
+CREATE PROCEDURE add_show(showname varchar(100), showdate DATE , ticketPrice int, venueID int)
 BEGIN
-insert into shows (ShowName, Showdate, TicketPrice, VenueID) VALUES ('$showname', '$showdate', '$ticketPrice', '$venueID');
+insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) VALUES ('showname', showdate, ticketPrice, venueID);
 END //
 
 DELIMITER ;
@@ -498,17 +498,14 @@ END //
 
 DELIMITER ;
 
-
 -- END Performs_db.php) -----------------------------------------------------------------------------------------------------
 
 
 
 
-
-
-
-
-
+insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Coldplay', '2017-12-23' , 80, 2);
+insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Imagine Dragons', '2017-11-10' , 80 , 2);
+insert into Shows (ShowName, ShowDate, TicketPrice, VenueID) values ('Oasis', '2017-10-02' , 30 , 2);
 
 
 
