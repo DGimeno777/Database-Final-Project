@@ -229,4 +229,17 @@ END//
 
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS remove_song_from_set_list;
+DELIMITER //
+CREATE PROCEDURE remove_song_from_set_list
+(
+	song_ID int, performance_ID int
+)
+BEGIN
+
+	delete from SetListSong where SongID = song_ID and PerformanceID = performance_ID;
+ 
+END //
+DELIMITER ;
+
 

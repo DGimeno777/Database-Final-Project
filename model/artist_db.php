@@ -1,7 +1,7 @@
 <?php
 function remove_song_from_set_list($songID, $performanceID){
     global $db;
-    $query = "delete from SetListSong where SongID = '$songID' and PerformanceID = '$performanceID';";
+    $query = "Call remove_song_from_set_list($songID, $performanceID);";
     $query = $db->query($query);
     return $query;
 }
