@@ -148,3 +148,85 @@ insert into Performs (ArtistID, ShowID, Headline) values (3, 4, 'Opener');
 insert into Performs (ArtistID, ShowID, Headline) values (4, 5, 'Headline');
 insert into Performs (ArtistID, ShowID, Headline) values (5, 5, 'Opener');
 
+DROP TRIGGER IF EXISTS max_ticket_limit;
+
+DELIMITER //
+CREATE TRIGGER max_ticket_limit
+	BEFORE insert ON Ticket
+    FOR EACH ROW
+BEGIN
+	DECLARE ticket_count INT;
+    DECLARE venue_capacity INT;
+    
+	select count(*) 
+		into ticket_count
+			from Ticket 
+				where ShowID = 
+					New.ShowID;
+                
+	select Capacity 
+		into venue_capacity
+			from Shows natural join Venue 
+				where ShowID = New.ShowID;
+            
+	IF (venue_capacity < ticket_count) THEN
+			SIGNAL SQLSTATE 'HY000'
+				SET MESSAGE_TEXT = 'Show is sold out';
+	END IF;
+END; //
+DELIMITER ;
+
+DROP TRIGGER IF EXISTS insert_song_order;
+
+DELIMITER $$
+CREATE TRIGGER insert_song_order
+	BEFORE insert ON SetListSong
+    FOR EACH ROW
+BEGIN
+	
+    IF (New.SongOrder in (select SongOrder from SetListSong where PerformanceID = New.PerformanceID)) THEN
+		SIGNAL SQLSTATE 'HY000'
+				SET MESSAGE_TEXT = 'There is already a song being performed at this time';
+	END IF;
+    
+END; $$
+DELIMITER;
+
+DROP TRIGGER IF EXISTS update_song_order;
+
+DELIMITER //
+CREATE TRIGGER update_song_order
+	BEFORE update ON SetListSong
+    FOR EACH ROW
+BEGIN
+	
+    IF (New.SongOrder in (select SongOrder from SetListSong where PerformanceID = New.PerformanceID)) THEN
+		SIGNAL SQLSTATE 'HY000'
+				SET MESSAGE_TEXT = 'There is already a song being performed at this time';
+	END IF;
+    
+END; //
+DELIMITER;
+
+DROP FUNCTION IF EXISTS get_tickets_by_user;
+DELIMITER //
+
+CREATE FUNCTION get_tickets_by_user
+(
+   user_ID int
+)
+RETURNS INT
+BEGIN
+  DECLARE ticket_count INT;
+  
+  select count(*) 
+	into ticket_count
+		from Ticket 
+			where UserID =  user_ID;
+  
+  RETURN(ticket_count);
+END//
+
+DELIMITER ;
+
+
