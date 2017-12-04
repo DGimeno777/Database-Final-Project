@@ -5,10 +5,14 @@
 <div xmlns="http://www.w3.org/1999/html">
     Add Show:
     <div>
-        <form>
+        <form action="./" method="post">
             <input type="text" name="showname">
             <input type="date" name="showdate">
             <input type="number" name="ticketprice">
+            <input type="submit" name="Add Show">
+            <input type="hidden" name="action" value="add_show">
+            <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
+            <input type="hidden" name="venueID" value="<?php echo $venue["VenueID"];?>">
             <!-- Not needed here
             <?php
                 $allArtists = get_all_artists();
@@ -46,8 +50,15 @@
                 <th>
                     TicketPrice
                 </th>
+                <th>
+                    Edit Show
+                </th>
             </tr>
            <?php foreach($currShows as $show) :?>
+               <?php
+                    $headliners = get_headliner($show["ShowID"]);
+                    $openers = get_opener($show["ShowID"]);
+               ?>
                 <tr>
                     <th>
                         <?php echo $show["ShowName"]; ?>
@@ -56,10 +67,16 @@
                         <?php echo $show["ShowDate"]; ?>
                     </th>
                     <th>
-
+                        <?php foreach($headliners as $headliner) :?>
+                            <span><?php echo $headliner["ArtistName"];?></span>
+                            <br>
+                        <?php endforeach;?>
                     </th>
                     <th>
-
+                        <?php foreach($openers as $opener) :?>
+                            <span><?php echo $opener["ArtistName"];?></span>
+                            <br>
+                        <?php endforeach;?>
                     </th>
                     <th>
                         <?php echo $show["TicketPrice"]; ?>
@@ -93,6 +110,10 @@
                 </th>
             </tr>
             <?php foreach($prevShows as $show) :?>
+                <?php
+                $headliners = get_headliner($show["ShowID"]);
+                $openers = get_opener($show["ShowID"]);
+                ?>
                 <tr>
                     <th>
                         <?php echo $show["ShowName"]; ?>
@@ -101,11 +122,17 @@
                         <?php echo $show["ShowDate"]; ?>
                     </th>
                     <th>
-
+                        <?php foreach($headliners as $headliner) :?>
+                            <span><?php echo $headliner["ArtistName"];?></span>
+                            <br>
+                        <?php endforeach;?>
                     </th>
                     <th>
-
-                    </th>
+                        <?php foreach($openers as $opener) :?>
+                            <span><?php echo $opener["ArtistName"];?></span>
+                            <br>
+                        <?php endforeach;?>
+                    </th
                     <th>
                         <?php echo $show["TicketPrice"]; ?>
                     </th>

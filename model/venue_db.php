@@ -21,12 +21,6 @@ function get_showname_by_id($id){
     return $query->fetch()['name'];
 }
 
-function add_show($showname, $showdate , $ticketPrice, $venueID){
-    global $db;
-    $query = "insert into shows (ShowName, Showdate, TicketPrice, VenueID) VALUES ('$showname', '$showdate', '$ticketPrice', '$venueID');";
-    $db->exec($query);
-}
-
 function get_venue_by_user_id($userID){
     global $db;
     $query = "select * from Venue where UserID = '$userID'";

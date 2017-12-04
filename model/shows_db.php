@@ -60,6 +60,11 @@ function number_times_headlined($artistID){
     return $query;
 }
 
+function add_show($showname, $showdate , $ticketPrice, $venueID){
+    global $db;
+    $query = "insert into shows (ShowName, Showdate, TicketPrice, VenueID) VALUES ('$showname', '$showdate', '$ticketPrice', '$venueID');";
+    $db->exec($query);
+}
 
 function shows_before_today($venueid){
     global $db;

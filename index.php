@@ -5,6 +5,7 @@ include "model/shows_db.php";
 include "model/venue_db.php";
 include "model/artist_db.php";
 include "model/ticket_db.php";
+include "model/performs_db.php";
 
 if(isset($_POST['action'])){
     $action = $_POST['action'];
@@ -138,6 +139,30 @@ else if($action == "buy_ticket") {
         include "view/profile.php";
     }
     else {
+        include "view/homepage.php";
+    }
+}
+else if($action == "add_show") {
+    if (isset($_POST["userID"]) && isset($_POST["venueID"])) {
+        $userID = $_POST["userID"];
+        $user = get_user_by_userId($userID);
+        $user = $user->fetch();
+        $venueID = $_POST["venueID"];
+        if (isset($_POST["showname"]) &&
+            isset($_POST["showdate"]) &&
+            isset($_POST["ticketprice"])) {
+            $showname = $_POST["showname"];
+            $showdate = $_POST["showdate"];
+            $ticketprice = $_POST["ticketprice"];
+            try {
+                add_show($showname, $showdate, $ticketprice, $venueID);
+            } catch(Exception $err) {
+                echo $err;
+            }
+        }
+        include "view/profile.php";
+    }
+    else{
         include "view/homepage.php";
     }
 }
