@@ -53,9 +53,9 @@ function find_similar_artists($artistID){
 }
 
 //Use Case 14
-function find_similar_artists_2($artistID){
+function number_times_headlined($artistID){
     global $db;
-    $query = "select count(*), Headline from Performance where ArtistID = '$artistID' group by Headline;";
+    $query = "select count(*), Headline from Performs where ArtistID = '$artistID' group by Headline;";
     $query = $db->query($query);
     return $query;
 }
