@@ -1,3 +1,7 @@
+<?php
+    $venue = get_venue_from_user_id();
+    $venue = $venue->fetch();
+?>
 <div xmlns="http://www.w3.org/1999/html">
     Add Show:
     <div>
@@ -23,7 +27,7 @@
     Current Shows:
     <div>
         <?php
-            $currShows = [];
+            $currShows = shows_after_today($venue["VenueID"]);
         ?>
         <?php foreach($currShows as $show) :?>
             <table>
@@ -51,7 +55,7 @@
     Past Shows:
     <div>
         <?php
-            $prevShows = [];
+            $prevShows = shows_before_today($venue["VenueID"]);
         ?>
         <?php foreach($currShows as $show) :?>
 

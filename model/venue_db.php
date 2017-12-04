@@ -26,3 +26,10 @@ function add_show($showname, $year, $type){
     $query = "insert into shows (name, year, type) VALUES ('$showname', '$year', '$type')";
     $db->exec($query);
 }
+
+function get_venue_by_user_id($userID){
+    global $db;
+    $query = "select * from Venue where UserID = '$userID'";
+    $query = $db->query($query);
+    return $query;
+}
