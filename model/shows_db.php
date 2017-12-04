@@ -52,7 +52,7 @@ function find_similar_artists($artistID){
     return $query;
 }
 
-//Use Case 14
+//Use Case 14 The number of times an artist has headlined
 function number_times_headlined($artistID){
     global $db;
     $query = "select count(*), Headline from Performs where ArtistID = '$artistID' group by Headline;";
@@ -61,17 +61,17 @@ function number_times_headlined($artistID){
 }
 
 
-function shows_before_today(){
+function shows_before_today($venueid){
     global $db;
-    $query = "select * from shows join Venue using (VenueID) where ShowDate < NOW();";
+    $query = "select * from shows join Venue using (VenueID) where ShowDate < NOW() and Venue.venueid = $venueid;";
     $query = $db->query($query);
     return $query;
 }
 
 
-function shows_after_today(){
+function shows_after_today($venueid){
     global $db;
-    $query = "select * from shows join Venue using (VenueID) where ShowDate >= NOW();";
+    $query = "select * from shows join Venue using (VenueID) where ShowDate >= NOW() and Venue.venueid = $venueid;";
     $query = $db->query($query);
     return $query;
 }
