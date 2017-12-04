@@ -272,6 +272,7 @@ END //
 DELIMITER ;
 
 
+-- START ticket_db.php-------------------------------------------------------------------------------------------------------
 
 DROP PROCEDURE IF EXISTS get_tickets_sold_by_showId;
 
@@ -315,6 +316,135 @@ select * from Ticket where UserID =  $userID;
 END //
 
 DELIMITER ;
+
+
+-- END  ticket_db.php-------------------------------------------------------------------------------------------------------
+
+-- START shows_db.php-------------------------------------------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS get_show_by_showId;
+
+DELIMITER //
+
+CREATE PROCEDURE get_show_by_showId($showId int)
+BEGIN
+select * from shows where ShowID = '$showId';
+
+END //
+
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS get_shows_by_month;
+
+DELIMITER //
+
+CREATE PROCEDURE get_shows_by_month($month int)
+BEGIN
+select * from Shows where month(ShowDate) = '$month' order by ShowDate;
+
+END //
+
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS add_artist_to_show;
+
+DELIMITER //
+
+CREATE PROCEDURE add_artist_to_show($artist int, $show int, $headline varchar(20))
+BEGIN
+insert into Performance (ArtistID, ShowID, Headline) values ('$artist', '$show', '$headline');
+END //
+
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS remove_artist_from_show;
+
+DELIMITER //
+
+CREATE PROCEDURE remove_artist_from_show($artist int, $show int)
+BEGIN
+delete from Performance where ArtistID = '$artist' and ShowID = '$show';
+END //
+
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS shows_for_artist_before_given_date;
+
+DELIMITER //
+
+CREATE PROCEDURE shows_for_artist_before_given_date($artistID int, $showDate date)
+BEGIN
+select * from Performance natural join Shows where ArtistID = '$artistID' and ShowDate < '$showDate';
+END //
+
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS find_similar_artists;
+
+DELIMITER //
+
+CREATE PROCEDURE find_similar_artists($artistID int)
+BEGIN
+select * from Artist where Genre = (select Genre from Artist where ArtistID = '$artistID');
+END //
+
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS number_times_headlined;
+
+DELIMITER //
+
+CREATE PROCEDURE number_times_headlined($artistID int)
+BEGIN
+select count(*), Headline from Performs where ArtistID = 1  group by Headline;
+END //
+
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS shows_before_today;
+
+DELIMITER //
+
+CREATE PROCEDURE shows_before_today($artistID int)
+BEGIN
+select * from shows join Venue using (VenueID) where ShowDate < NOW();
+END //
+
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS shows_after_today;
+
+DELIMITER //
+
+CREATE PROCEDURE shows_after_today($artistID int)
+BEGIN
+select * from shows join Venue using (VenueID) where ShowDate >= NOW();
+END //
+
+DELIMITER ;
+
+-- END shows_db.php-------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
