@@ -89,15 +89,15 @@ function shows_after_today_by_venue($venueid){
 
 function shows_before_today_by_artist($artistid){
     global $db;
-    $query = "select * from shows join Artist using (VenueID) where ShowDate < NOW() and Venue.venueid = $venueid;";
+    $query = "select * from shows join Artist using (ArtistID) where ShowDate < NOW() and Artist.artistid = $artistid;";
     $query = $db->query($query);
     return $query;
 }
 
 
-function shows_after_today_by_venue($artistid){
+function shows_after_today_by_artist($artistid){
     global $db;
-    $query = "select * from shows join Venue using (VenueID) where ShowDate >= NOW() and Venue.venueid = $venueid;";
+    $query = "select * from shows join Artist using (ArtistID) where ShowDate >= NOW() and Artist.artistid = $artistid;";
     $query = $db->query($query);
     return $query;
 }

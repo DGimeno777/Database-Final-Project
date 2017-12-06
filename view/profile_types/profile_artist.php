@@ -16,7 +16,7 @@
     Current Performances:
     <div>
         <?php
-            $currShows = shows_after_today_by_venue($venue["VenueID"]);
+            $currShows = shows_after_today_by_aritst($artist["ArtistID"]);
         ?>
         <table>
             <tr>
@@ -61,7 +61,7 @@
     Past Performances:
     <div>
         <?php
-            $prevShows = shows_before_today_by_venue($venue["VenueID"]);
+            $prevShows = shows_before_today_by_artist($artist["ArtistID"]);
         ?>
         <table>
             <tr>

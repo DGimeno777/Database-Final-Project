@@ -30,7 +30,7 @@ function get_venue_by_user_id($userID){
 
 //Use Case 5 (Venue adds an artist to a show)
 //this has a procedure
-function add_artist_to_show($artist, $show, $headline){
+/*function add_artist_to_show($artist, $show, $headline){
     global $db;
     $query = "insert into Performs (ArtistID, ShowID, Headline) values ('$artist', '$show', '$headline');";
     $db->exec($query);
@@ -49,5 +49,5 @@ function find_similar_artists($artistID){
     $query = "select * from Artist where Genre = (select Genre from Artist where ArtistID = '$artistID')";
     $query = $db->query($query);
     return $query;
-}
+}*/
 
