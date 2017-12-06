@@ -48,15 +48,14 @@
         <br>
         <?php echo $user['UserType']?>
     </div>
-    <div class="catdiv">
-        Update Show Info:
-        <form action="./" method="post">
-            <input type="hidden" name="action" value="update_user_password">
-            <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
-            <input type="text" name="newpass">
-            <input type="text" name="newpassver">
-            <input type="submit" value="Update Password">
-        </form>
+    <div>
+        <?php
+        if(strtolower($user["UserType"]) == "artist"){
+            include "show_edit_types/show_edit_artist.php";
+        }
+        elseif (strtolower($user["UserType"]) == "venue") {
+            include "show_edit_types/show_edit_venue.php";
+        }?>
     </div>
 </div>
 <br>

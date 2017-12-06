@@ -2,8 +2,60 @@
 <body>
 <div>
     <form method="post" action="./">
-
+        <input type="text" name="showname" value="<?php echo $show["ShowName"]; ?>">
+        <input type="date" name="showdate" value="<?php echo $show["ShowDate"];?>">
+        <input type="number" name="ticketprice" value="<?php echo $show["TicketPrice"];?>">
+        <input type="submit" value="Update">
+        <input type="hidden" name="action" value="update_show">
+        <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
+        <input type="hidden" name="showID" value="<?php echo $show["ShowID"];?>">
     </form>
+</div>
+<div>
+    Artists:
+    <div>
+        <?php
+        $headliners = get_headliner($show["ShowID"]);
+        $openers = get_opener($show["ShowID"]);
+        ?>
+        Headliners:
+        <table>
+            <tr>
+                <th>Artist Name:</th>
+                <th></th>
+            </tr>
+            <tr>
+                <?php foreach($headliners as $headliner) :?>
+                    <span><?php echo $headliner["ArtistName"];?></span>
+                    <br>
+                <?php endforeach;?>
+            </tr>
+        </table>
+        <br>
+        Openers:
+        <table>
+            <tr>
+                <th>Artist Name:</th>
+                <th></th>
+            </tr>
+            <tr>
+                <?php foreach($openers as $opener) :?>
+                    <th>
+                        <?php echo $opener["ArtistName"];?>
+                    </th>
+                    <th>
+                        <form>
+                            <input type="submit" value="Remove Artist">
+                            <input type="hidden" name="action" value="show_remove_artist">
+                            <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
+                            <input type="hidden" name="showID" value="<?php echo $show["ShowID"];?>">
+                            <input type="hidden" name="performID" value="<?php echo $opener["PerformanceID"];?>">
+                        </form>
+                    </th>
+                <?php endforeach;?>
+            </tr>
+        </table>
+    </div>
 </div>
 <div>
     Add Artist:
