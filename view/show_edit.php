@@ -61,6 +61,12 @@
 <br>
 <div class="positiondiv">
     <form action="./" method="post">
+        <input type="submit" value="Back to Profile">
+        <input type="hidden" name="action" value="profile">
+        <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
+    </form>
+    <br>
+    <form action="./" method="post">
         <input class="button" type="submit" value="Homepage">
     </form>
 </div>

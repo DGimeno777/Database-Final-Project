@@ -15,14 +15,9 @@ else{
 }
 
 if($action == "profile"){
-    $username = "";
-    if($username = isset($_POST['username']) &&
-        get_user_by_username($username)->rowCount() > 0) {
-
-        $username = $_POST['username'];
-
-        $user = get_user_by_username($username)->fetch();
-            include "view/profile.php";
+    if (isset($_POST["userID"])) {
+        $user = get_user_by_userId($_POST["userID"])->fetch();
+        include "view/profile.php";
     }
     else {
         include "view/homepage.php";

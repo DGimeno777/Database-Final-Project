@@ -1,5 +1,3 @@
-<html>
-<body>
 <div>
     <form method="post" action="./">
         <input type="text" name="showname" value="<?php echo $show["ShowName"]; ?>">
@@ -91,12 +89,3 @@
         <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
     </form>
 </div>
-<br>
-<div>
-    <form action="./" method="post">
-        <input type="submit" value="Back to Profile">
-        <input type="hidden" name="action" value="profile">
-    </form>
-</div>
-</body>
-</html>
