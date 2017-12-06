@@ -30,7 +30,7 @@
                         <?php echo $headliner["ArtistName"];?>
                     </th>
                     <th>
-                        <form>
+                        <form method="post" action="./">
                             <input type="submit" value="Remove Artist">
                             <input type="hidden" name="action" value="show_remove_artist">
                             <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
@@ -54,7 +54,7 @@
                         <?php echo $opener["ArtistName"];?>
                     </th>
                     <th>
-                        <form>
+                        <form method="post" action="./">
                             <input type="submit" value="Remove Artist">
                             <input type="hidden" name="action" value="show_remove_artist">
                             <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
