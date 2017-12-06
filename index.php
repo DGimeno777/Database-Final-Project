@@ -184,7 +184,27 @@ else if($action == "show_edit") {
     }
 }
 else if ($action == "update_show") {
-    
+    if (isset($_POST["userID"])) {
+        $user = get_user_by_userId($_POST["userID"])->fetch();
+        if (isset($_POST["showID"])) {
+            if (isset($_POST["showname"]) &&
+                isset($_POST["showdate"]) &&
+                isset($_POST["ticketprice"])) {
+                $showname = $_POST["showname"];
+                $showdate = $_POST["showdate"];
+                $ticketprice = $_POST["ticketprice"];
+                update_show($_POST["showID"], $showname, $showdate, $ticketprice);
+            }
+            $show = get_show_by_showId($_POST["showID"])->fetch();
+            include "view/show_edit.php";
+        }
+        else {
+            include "view/profile.php";
+        }
+    }
+    else{
+        include "view/homepage.php";
+    }
 }
 else if ($action == "add_show_artist") {
     if (isset($_POST["userID"])) {

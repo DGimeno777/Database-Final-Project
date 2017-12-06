@@ -66,6 +66,12 @@ function add_show($showname, $showdate , $ticketPrice, $venueID){
     $db->exec($query);
 }
 
+function update_show($showID, $showname, $showdate, $ticketprice) {
+    global $db;
+    $query = "update shows set ShowName = '$showname', ShowDate = '$showdate', TicketPrice = '$ticketprice' where ShowID = '$showID';";
+    $db->exec($query);
+}
+
 function shows_before_today($venueid){
     global $db;
     $query = "select * from shows join Venue using (VenueID) where ShowDate < NOW() and Venue.venueid = $venueid;";
