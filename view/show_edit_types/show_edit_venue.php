@@ -21,13 +21,23 @@
         Headliners:
         <table>
             <tr>
-                <th>Artist Name:</th>
+                <th>Artist Name</th>
                 <th></th>
             </tr>
             <tr>
                 <?php foreach($headliners as $headliner) :?>
-                    <span><?php echo $headliner["ArtistName"];?></span>
-                    <br>
+                    <th>
+                        <?php echo $headliner["ArtistName"];?>
+                    </th>
+                    <th>
+                        <form>
+                            <input type="submit" value="Remove Artist">
+                            <input type="hidden" name="action" value="show_remove_artist">
+                            <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
+                            <input type="hidden" name="showID" value="<?php echo $show["ShowID"];?>">
+                            <input type="hidden" name="performID" value="<?php echo $headliner["PerformanceID"];?>">
+                        </form>
+                    </th>
                 <?php endforeach;?>
             </tr>
         </table>
@@ -35,7 +45,7 @@
         Openers:
         <table>
             <tr>
-                <th>Artist Name:</th>
+                <th>Artist Name</th>
                 <th></th>
             </tr>
             <tr>

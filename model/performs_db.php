@@ -12,3 +12,9 @@ function get_opener($showid) {
     $query = $db->query($query);
     return $query;
 }
+
+function remove_performance_by_performanceId($performID) {
+    global $db;
+    $query = "delete from Performs where PerformanceID = '$performID'";
+    $db->exec($query);
+}
