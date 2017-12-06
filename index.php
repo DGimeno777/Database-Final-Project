@@ -173,6 +173,21 @@ else if($action == "add_show") {
         include "view/homepage.php";
     }
 }
+else if($action == "show_edit") {
+    if (isset($_POST["userID"])) {
+        $user = get_user_by_userId($_POST["userID"])->fetch();
+        if (isset($_POST["showID"])) {
+            $show = get_show_by_showId($_POST["showID"])->fetch();
+            include "view/show_edit.php";
+        }
+        else {
+            include "view/profile.php";
+        }
+    }
+    else {
+        include "view/homepage.php";
+    }
+}
 else{
     include "view/homepage.php";
 }

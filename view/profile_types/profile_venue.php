@@ -13,18 +13,6 @@
             <input type="hidden" name="action" value="add_show">
             <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
             <input type="hidden" name="venueID" value="<?php echo $venue["VenueID"];?>">
-            <!-- Not needed here
-            <?php
-                $allArtists = get_all_artists();
-            ?>
-
-            <select name="showArtist">
-                <?php foreach($allArtists as $artist) :?>
-                    <option value="<?php echo $artist["ArtistID"]; ?>">
-                        <?php echo $artist["ArtistName"]; ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>-->
         </form>
     </div>
     </br>
@@ -80,6 +68,14 @@
                     </th>
                     <th>
                         <?php echo $show["TicketPrice"]; ?>
+                    </th>
+                    <th>
+                        <form action="./" method="post">
+                            <input type="submit" value="Edit">
+                            <input type="hidden" name="action" value="show_edit">
+                            <input type="hidden" name="showID" value="<?php echo $show["ShowID"];?>">
+                            <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
+                        </form>
                     </th>
                 </tr>
            <?php endforeach; ?>
@@ -142,7 +138,7 @@
                     <th>
                         <form action="./" method="post">
                             <input type="submit" value="Edit">
-                            <input type="hidden" name="action" value="edit_page">
+                            <input type="hidden" name="action" value="show_edit">
                             <input type="hidden" name="showID" value="<?php echo $show["ShowID"];?>">
                             <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
                         </form>
