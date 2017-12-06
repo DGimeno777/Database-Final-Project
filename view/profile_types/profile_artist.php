@@ -3,10 +3,17 @@
     $artist = $artist->fetch();
 ?>
 <div xmlns="http://www.w3.org/1999/html">
+    Songs:
+    <div>
+        <form method="post" action="./">
+
+        </form>
+    </div>
+    <br>
     Add Song:
     <div>
         <form method="post" action="./">
-            <input type="text" name="songname">
+            <input type="text" name="songname" placeholder="Song Name">
             <input type="submit" value="Add Song">
             <input type="hidden" name="action" value="add_artist_song">
             <input type="hidden" name="artistID" value="<?php echo $artist["ArtistID"];?>">

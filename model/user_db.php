@@ -33,6 +33,13 @@ function update_password($password, $userID){
     $db->exec($query);
 }
 
+function get_user_by_artistid($artistID) {
+    global $db;
+    $query = "select * from users where UserID = (select UserID from artist where artistID = '$artistID')";
+    $query = $db->query($query);
+    return $query;
+}
+
 //Not Done
 function find_close_venues($venueName){
     global $db;

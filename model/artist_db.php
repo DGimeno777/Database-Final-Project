@@ -27,6 +27,13 @@ function get_artist_by_user_id($userID){
     return $query;
 }
 
+function get_artist_by_artistid($artistID){
+    global $db;
+    $query = "select * from Artist where ArtistID = '$artistID'";
+    $query = $db->query($query);
+    return $query;
+}
+
 function add_artist_to_db($artistName, $userID){
     global $db;
     $query = "insert into Artist (ArtistName, UserID) values ('$artistName', '$userID');";

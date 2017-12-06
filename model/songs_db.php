@@ -17,3 +17,9 @@ function get_song_by_songid($songid) {
     $query = $db->query($query);
     return $query;
 }
+
+function add_new_song_for_artist($artistID, $songname) {
+    global $db;
+    $query = "insert into song (SongName, ArtistID) values ('$songname', '$artistID');";
+    $db->exec($query);
+}
