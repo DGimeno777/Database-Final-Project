@@ -10,3 +10,10 @@ function add_song_to_set_list($songID, $performanceID, $songOrder){
     $query = "Call add_song_to_set_list('$songID', '$performanceID', '$songOrder');";
     $db->exec($query);
 }
+
+function get_song_by_songid($songid) {
+    global $db;
+    $query = "select * from song where songid = '$songid'";
+    $query = $db->query($query);
+    return $query;
+}

@@ -1,4 +1,5 @@
 <?php
+/*
 function remove_song_from_set_list($songID, $performanceID){
     global $db;
     $query = "Call remove_song_from_set_list('$songID', '$performanceID');";
@@ -9,7 +10,7 @@ function add_song_to_set_list($songID, $performanceID, $songOrder){
     global $db;
     $query = "Call add_song_to_set_list('$songID', '$performanceID', '$songOrder');";
     $db->exec($query);
-}
+}*/
 
 //Gets all the artists in the database
 function get_all_artists(){

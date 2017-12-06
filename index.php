@@ -6,6 +6,8 @@ include "model/venue_db.php";
 include "model/artist_db.php";
 include "model/ticket_db.php";
 include "model/performs_db.php";
+include "model/setlistsong_db.php";
+include "model/songs_db.php";
 
 if(isset($_POST['action'])){
     $action = $_POST['action'];

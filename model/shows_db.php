@@ -74,7 +74,7 @@ function update_show($showID, $showname, $showdate, $ticketprice) {
 
 function shows_before_today_by_venue($venueid){
     global $db;
-    $query = "select * from shows join Venue using (VenueID) where ShowDate < NOW() and Venue.venueid = $venueid;";
+    $query = "select * from shows join Venue using (VenueID) where ShowDate < NOW() and Venue.venueid = '$venueid';";
     $query = $db->query($query);
     return $query;
 }
@@ -82,14 +82,14 @@ function shows_before_today_by_venue($venueid){
 
 function shows_after_today_by_venue($venueid){
     global $db;
-    $query = "select * from shows join Venue using (VenueID) where ShowDate >= NOW() and Venue.venueid = $venueid;";
+    $query = "select * from shows join Venue using (VenueID) where ShowDate >= NOW() and Venue.venueid = '$venueid';";
     $query = $db->query($query);
     return $query;
 }
 
 function shows_before_today_by_artist($artistid){
     global $db;
-    $query = "select * from shows join Artist using (ArtistID) where ShowDate < NOW() and Artist.artistid = $artistid;";
+    $query = "select * from shows join Performs using (ShowID) join Venue using (VenueID) join Users using (Userid) where ShowDate < NOW() and artistid = '$artistid';";
     $query = $db->query($query);
     return $query;
 }
@@ -97,7 +97,7 @@ function shows_before_today_by_artist($artistid){
 
 function shows_after_today_by_artist($artistid){
     global $db;
-    $query = "select * from shows join Artist using (ArtistID) where ShowDate >= NOW() and Artist.artistid = $artistid;";
+    $query = "select * from shows join Performs using (ShowID) join Venue using (VenueID) join Users using (Userid) where ShowDate >= NOW() and artistid = '$artistid';";
     $query = $db->query($query);
     return $query;
 }
