@@ -188,6 +188,25 @@ else if($action == "show_edit") {
         include "view/homepage.php";
     }
 }
+else if ($action == "add_show_artist") {
+    if (isset($_POST["userID"])) {
+        $user = get_user_by_userId($_POST["userID"])->fetch();
+        if (isset($_POST["showID"])) {
+            $show = get_show_by_showId($_POST["showID"])->fetch();
+            if (isset($_POST["add_artist"]) && isset($_POST["artist_type"])) {
+                echo $_POST["add_artist"] . "," . $_POST["showID"] ."," . $_POST["artist_type"];
+                add_artist_to_show($_POST["add_artist"], $_POST["showID"], $_POST["artist_type"]);
+            }
+            include "view/show_edit.php";
+        }
+        else {
+            include "view/profile.php";
+        }
+    }
+    else {
+        include "view/homepage.php";
+    }
+}
 else if($action == "show_remove_artist") {
     if (isset($_POST["performID"])) {
         $performID = $_POST["performID"];

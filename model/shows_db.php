@@ -25,21 +25,21 @@ function get_shows_by_month($month){
 //Use Case 5
 function add_artist_to_show($artist, $show, $headline){
     global $db;
-    $query = "insert into Performance (ArtistID, ShowID, Headline) values ('$artist', '$show', '$headline');";
+    $query = "insert into Performs (ArtistID, ShowID, Headline) values ('$artist', '$show', '$headline');";
     $db->exec($query);
 }
 
 //Use Case 6
 function remove_artist_from_show($artist, $show){
     global $db;
-    $query = "delete from Performance where ArtistID = '$artist' and ShowID = '$show';";
+    $query = "delete from Performs where ArtistID = '$artist' and ShowID = '$show';";
     $db->exec($query);
 }
 
 //Use Case 10
 function shows_for_artist_before_given_date($artistID, $showDate){
     global $db;
-    $query = "select * from Performance natural join Shows where ArtistID = '$artistID' and ShowDate < '$showDate';";
+    $query = "select * from Performs natural join Shows where ArtistID = '$artistID' and ShowDate < '$showDate';";
     $query = $db->query($query);
     return $query;
 }

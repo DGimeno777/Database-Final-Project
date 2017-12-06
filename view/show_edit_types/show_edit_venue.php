@@ -82,12 +82,13 @@
             <?php endforeach; ?>
         </select>
         <br>
-        <input type="radio" name="artist_type" value="headliner"> Headliner<br>
-        <input type="radio" name="artist_type" value="opener"> Opener
+        <input type="radio" name="artist_type" value="Headline"> Headliner<br>
+        <input type="radio" name="artist_type" value="Opener"> Opener
         <br>
         <input type="submit" value="Add">
-        <input type="hidden" name="action" value="add_show_headline">
+        <input type="hidden" name="action" value="add_show_artist">
         <input type="hidden" name="showID" value="<?php echo $show["ShowID"];?>">
+        <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
     </form>
 </div>
 <br>
