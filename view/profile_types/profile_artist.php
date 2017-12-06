@@ -5,29 +5,18 @@
 <div xmlns="http://www.w3.org/1999/html">
     Add Song:
     <div>
-        <form>
+        <form method="post" action="./">
             <input type="text" name="songname">
-            <input type="text" name="performancename">
-            <input type="number" name="songorder">
-            <!-- Not needed here
-            <?php
-                $allArtists = get_all_artists();
-            ?>
-
-            <select name="showArtist">
-                <?php foreach($allArtists as $artist) :?>
-                    <option value="<?php echo $artist["ArtistID"]; ?>">
-                        <?php echo $artist["ArtistName"]; ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>-->
+            <input type="submit" value="Add Song">
+            <input type="hidden" name="action" value="add_artist_song">
+            <input type="hidden" name="artistID" value="<?php echo $artist["ArtistID"];?>">
         </form>
     </div>
     </br>
     Current Performances:
     <div>
         <?php
-            $currShows = shows_after_today($venue["VenueID"]);
+            $currShows = shows_after_today_by_venue($venue["VenueID"]);
         ?>
         <table>
             <tr>
@@ -72,7 +61,7 @@
     Past Performances:
     <div>
         <?php
-            $prevShows = shows_before_today($venue["VenueID"]);
+            $prevShows = shows_before_today_by_venue($venue["VenueID"]);
         ?>
         <table>
             <tr>
