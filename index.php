@@ -183,6 +183,9 @@ else if($action == "show_edit") {
         include "view/homepage.php";
     }
 }
+else if ($action == "update_show") {
+    
+}
 else if ($action == "add_show_artist") {
     if (isset($_POST["userID"])) {
         $user = get_user_by_userId($_POST["userID"])->fetch();
