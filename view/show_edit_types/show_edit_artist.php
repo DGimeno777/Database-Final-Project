@@ -46,6 +46,8 @@
                             <input type="submit" value="Delete">
                             <input type="hidden" name="action" value="remove_sls">
                             <input type="hidden" name="slsID" value="<?php echo $s["SLSID"];?>">
+                            <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
+                            <input type="hidden" name="showID" value="<?php echo $show["ShowID"];?>">
                         </form>
                     </th>
                 </tr>
