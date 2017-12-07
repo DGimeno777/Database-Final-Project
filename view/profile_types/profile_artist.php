@@ -5,9 +5,32 @@
 <div xmlns="http://www.w3.org/1999/html">
     Songs:
     <div>
-        <form method="post" action="./">
-
-        </form>
+        <?php
+            $songs = get_all_songs_by_artistid($artist["ArtistID"]);
+        ?>
+        <table>
+            <tr>
+                <th>
+                    Song Name
+                </th>
+                <th></th>
+            </tr>
+            <?php foreach($songs as $song) :?>
+                <tr>
+                    <th>
+                        <?php echo $song["SongName"];?>
+                    </th>
+                    <th>
+                        <form method="post" action="./">
+                            <input type="submit" value="Delete">
+                            <input type="hidden" name="action" value="remove_artist_song">
+                            <input type="hidden" name="songID" value="<?php echo $song["SongID"];?>">
+                            <input type="hidden" name="artistID" value="<?php echo $artist["ArtistID"];?>">
+                        </form>
+                    </th>
+                </tr>
+            <?php endforeach;?>
+        </table>
     </div>
     <br>
     Add Song:

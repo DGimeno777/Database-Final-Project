@@ -20,10 +20,9 @@
         </tr>
         <?php foreach(tickets_purchased_by_user($user["UserID"]) as $ticket) : ?>
             <?php
-            $show = get_show_by_showId($ticket["ShowID"]);
-            $show = $show->fetch();
-            $venue = get_venue_from_venueId($show["VenueID"]);
-            $venue = $venue->fetch();
+            $show = get_show_by_showId($ticket["ShowID"])->fetch();
+            $venue = get_venue_from_venueId($show["VenueID"])->fetch();
+            $venue_user = get_user_by_venueid($show["VenueID"])->fetch();
             ?>
             <tr>
                 <th>
@@ -39,7 +38,7 @@
                     <?php echo $venue["VenueName"];?>
                 </th>
                 <th>
-                    <?php echo $venue["Location"];?>
+                    <?php echo $venue_user["Longitude"] . "," . $venue_user["Latitude"];?>
                 </th>
             </tr>
         <?php endforeach; ?>
@@ -73,8 +72,8 @@
         </tr>
         <?php foreach(get_all_shows() as $show) :?>
             <?php
-            $venue = get_venue_from_venueId($show['VenueID']);
-            $venue = $venue->fetch();
+            $venue = get_venue_from_venueId($show['VenueID'])->fetch();
+            $venue_user = get_user_by_venueid($venue["VenueID"])->fetch();
             ?>
             <tr>
                 <th>
@@ -90,7 +89,7 @@
                     <?php echo $venue["VenueName"];?>
                 </th>
                 <th>
-                    <?php echo $venue["Location"];?>
+                    <?php echo $venue_user["Longitude"] . "," . $venue_user["Latitude"];?>
                 </th>
                 <th>
                     <?php

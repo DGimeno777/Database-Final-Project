@@ -40,6 +40,13 @@ function get_user_by_artistid($artistID) {
     return $query;
 }
 
+function get_user_by_venueid($venueID) {
+    global $db;
+    $query = "select * from users where UserID = (select UserID from venue where venueID = '$venueID')";
+    $query = $db->query($query);
+    return $query;
+}
+
 //Not Done
 function find_close_venues($venueName){
     global $db;

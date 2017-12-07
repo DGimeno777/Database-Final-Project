@@ -257,6 +257,18 @@ else if ($action == "add_artist_song") {
         include "view/homepage.php";
     }
 }
+else if ($action == "remove_artist_song") {
+    if (isset($_POST["songID"])) {
+        remove_song($_POST["songID"]);
+    }
+    if (isset($_POST["artistID"])) {
+        $user = get_user_by_artistid($_POST["artistID"])->fetch();
+        include "view/profile.php";
+    }
+    else {
+        include "view/homepage.php";
+    }
+}
 else{
     include "view/homepage.php";
 }
