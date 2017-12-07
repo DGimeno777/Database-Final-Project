@@ -7,7 +7,7 @@ function remove_song_from_set_list($songID, $performanceID){
 
 function add_song_to_set_list($songID, $performanceID, $songOrder){
     global $db;
-    $query = "Call add_song_to_set_list('$songID', '$performanceID', '$songOrder');";
+    $query = "Call add_song_to_set_list('$songID', '$performanceID');";
     $db->exec($query);
 }
 
