@@ -51,9 +51,11 @@
     <div>
         <?php
         if(strtolower($user["UserType"]) == "artist"){
+            $artist = get_artist_by_user_id($user["UserID"])->fetch();
             include "show_edit_types/show_edit_artist.php";
         }
         elseif (strtolower($user["UserType"]) == "venue") {
+            $venue = get_venue_by_user_id($user["UserID"])->fetch();
             include "show_edit_types/show_edit_venue.php";
         }?>
     </div>

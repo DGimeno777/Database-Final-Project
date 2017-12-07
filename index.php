@@ -185,6 +185,17 @@ else if($action == "show_edit") {
         include "view/homepage.php";
     }
 }
+else if($action == "add_sls") {
+    if(isset($_POST["performanceID"]) && isset($_POST["songID"])) {
+        add_song_to_set_list($_POST["songID"], $_POST["performanceID"], 0);
+    }
+    if (isset($_POST["userID"])) {
+        
+    }
+    else {
+        include "view/homepage.php";
+    }
+}
 else if ($action == "update_show") {
     if (isset($_POST["userID"])) {
         $user = get_user_by_userId($_POST["userID"])->fetch();

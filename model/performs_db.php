@@ -18,3 +18,10 @@ function remove_performance_by_performanceId($performID) {
     $query = "delete from Performs where PerformanceID = '$performID'";
     $db->exec($query);
 }
+
+function get_performance_by_artistid_and_showid($artistID, $showID) {
+    global $db;
+    $query = "select * from performs where ArtistID = '$artistID' and ShowID = '$showID'";
+    $query = $db->query($query);
+    return $query;
+}
