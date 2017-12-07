@@ -93,7 +93,7 @@
                     </th>
                     <th>
                         <?php foreach($setlistsongs as $sls) :?>
-                            <?php $sls = get_song_by_songid($sls)?>
+                            <?php $sls = get_song_by_songid($sls["SongID"])->fetch()?>
                             <span><?php echo $sls["SongName"];?></span>
                             <br>
                         <?php endforeach; ?>
@@ -184,7 +184,7 @@
                     </th>
                     <th>
                         <?php foreach($setlistsongs as $sls) :?>
-                            <?php $sls = get_song_by_songid($sls)?>
+                            <?php $sls = get_song_by_songid($sls["SongID"])->fetch();?>
                             <span><?php echo $sls["SongName"];?></span>
                             <br>
                         <?php endforeach; ?>

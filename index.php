@@ -187,6 +187,7 @@ else if($action == "show_edit") {
 }
 else if($action == "add_sls") {
     if(isset($_POST["performanceID"]) && isset($_POST["songID"])) {
+        echo $_POST["songID"] . "," . $_POST["performanceID"];
         add_song_to_set_list($_POST["songID"], $_POST["performanceID"], 0);
     }
     if (isset($_POST["userID"])){
@@ -208,9 +209,10 @@ else if($action == "remove_sls") {
         remove_sls_by_slsid($_POST["slsID"]);
     }
     if (isset($_POST["userID"])) {
-        $user = get_user_by_userId($_POST["userID"]);
+        $user = get_user_by_userId($_POST["userID"])->fetch();
         if (isset($_POST["showID"])) {
-            $show = get_show_by_showId($_POST["showID"]);
+            $show = get_show_by_showId($_POST["showID"])->fetch();
+            include "view/show_edit.php";
         }
         else {
             include "view/profile.php";
