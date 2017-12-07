@@ -74,6 +74,9 @@
                 <th>
                     TicketPrice
                 </th>
+                <th>
+                    Edit Show
+                </th>
             </tr>
            <?php foreach($currShows as $show) :?>
                <?php
@@ -118,6 +121,14 @@
                     <th>
                         <?php echo $show["TicketPrice"]; ?>
                     </th>
+                    <th>
+                        <form method="post" action="./">
+                            <input type="submit" value="Edit">
+                            <input type="hidden" name="action" value="show_edit">
+                            <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
+                            <input type="hidden" name="showID" value="<?php echo $show["ShowID"];?>">
+                        </form>
+                    </th>
                 </tr>
            <?php endforeach; ?>
         </table>
@@ -153,6 +164,9 @@
                 </th>
                 <th>
                     TicketPrice
+                </th>
+                <th>
+                    Edit Show
                 </th>
             </tr>
             <?php foreach($prevShows as $show) :?>
