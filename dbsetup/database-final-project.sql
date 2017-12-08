@@ -608,15 +608,23 @@ DROP PROCEDURE IF EXISTS get_filtered_shows;
 
 DELIMITER //
 
-CREATE PROCEDURE get_filtered_shows(user_ID int,  filter_type varchar(50), show_date Date)
+CREATE PROCEDURE get_filtered_shows(user_ID int,  filter_type varchar(50), show_date Date, after_before varchar(50))
 BEGIN
     
-    if (filter_type = 'Venue') THEN
-		select * from Shows where VenueID = user_ID and ShowDate > 'date';
+    if (filter_type = 'Venue' and after_before = 'After') THEN
+		select * from Shows where VenueID = user_ID and ShowDate >= show_date;
 	end if;
     
-    if (filter_type = 'Artist') THEN 
-		select * from Shows natural join Performs where ArtistID = user_ID and ShowDate > 'date';
+    if (filter_type = 'Venue' and after_before = 'Before') THEN
+		select * from Shows where VenueID = user_ID and ShowDate < show_date;
+	end if;
+    
+    if (filter_type = 'Artist' and after_before = 'After') THEN 
+		select * from Shows natural join Performs where ArtistID = user_ID and ShowDate >= show_date;
+	end if;
+    
+    if (filter_type = 'Artist' and after_before = 'Before') THEN 
+		select * from Shows natural join Performs where ArtistID = user_ID and ShowDate < show_date;
 	end if;
    
 END //
