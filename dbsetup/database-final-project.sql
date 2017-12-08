@@ -604,3 +604,23 @@ DELIMITER ;
 
 -- End Location Calculation --
 
+DROP PROCEDURE IF EXISTS get_filtered_shows;
+
+DELIMITER //
+
+CREATE PROCEDURE get_filtered_shows(user_ID int,  filter_type varchar(50), show_date Date)
+BEGIN
+    
+    if (filter_type = 'Venue') THEN
+		select * from Shows where VenueID = user_ID and ShowDate > 'date';
+	end if;
+    
+    if (filter_type = 'Artist') THEN 
+		select * from Shows natural join Performs where ArtistID = user_ID and ShowDate > 'date';
+	end if;
+   
+END //
+
+DELIMITER ;
+
+
