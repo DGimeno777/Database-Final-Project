@@ -28,7 +28,7 @@ Genre varchar(100),
 
 CONSTRAINT artist_user_fk
 FOREIGN KEY (UserID)
-	REFERENCES Users (UserID)
+	REFERENCES Users (UserID) On update cascade on delete cascade
 );
 
 create table Venue 
@@ -40,7 +40,7 @@ Capacity INT,
 
 CONSTRAINT venue_user_fk
 FOREIGN KEY (UserID)
-	REFERENCES Users (UserID)
+	REFERENCES Users (UserID) On update cascade on delete cascade
 );
 
 create table Shows
@@ -53,7 +53,7 @@ VenueID INT,
 
 CONSTRAINT Venue_fk
 	FOREIGN KEY (VenueID)
-	REFERENCES Venue (VenueID)
+	REFERENCES Venue (VenueID) On update cascade on delete cascade
     
 );
 
@@ -67,11 +67,11 @@ Headline ENUM ('Headline', 'Opener'),
 
 CONSTRAINT artist_fk
 	FOREIGN KEY (ArtistID)
-	REFERENCES Artist (ArtistID),
+	REFERENCES Artist (ArtistID) On update cascade on delete cascade,
     
 CONSTRAINT show_fk
 	FOREIGN KEY (ShowID)
-	REFERENCES Shows (ShowID)
+	REFERENCES Shows (ShowID) On update cascade on delete cascade
 );
 
 create table Song 
@@ -82,7 +82,7 @@ ArtistID int,
 
 CONSTRAINT artist_song_fk
 FOREIGN KEY (ArtistID)
-	REFERENCES Artist (ArtistID)
+	REFERENCES Artist (ArtistID) On update cascade on delete cascade
 );
 
 
@@ -96,11 +96,11 @@ SongOrder int,
 
 CONSTRAINT song_fk
 FOREIGN KEY (SongID)
-	REFERENCES Song (SongID),
+	REFERENCES Song (SongID) On update cascade on delete cascade,
     
 CONSTRAINT performance_fk
 FOREIGN KEY (PerformanceID)
-	REFERENCES Performs (PerformanceID)    
+	REFERENCES Performs (PerformanceID) On update cascade on delete cascade    
 );
 
 create table Ticket
@@ -112,11 +112,11 @@ ShowID int,
 
 CONSTRAINT ticket_user_fk
 FOREIGN KEY (UserID)
-	REFERENCES Users (UserID),
+	REFERENCES Users (UserID) On update cascade on delete cascade,
     
 CONSTRAINT ticket_shows_fk
 FOREIGN KEY (ShowID)
-	REFERENCES Shows (ShowID)    
+	REFERENCES Shows (ShowID) On update cascade on delete cascade  
 );
 
 
