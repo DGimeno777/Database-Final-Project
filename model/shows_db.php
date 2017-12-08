@@ -116,6 +116,12 @@ function shows_before_today(){
     return $query;
 }
 
+function get_filtered_shows($userID, $filterType, $showDate){
+    global $db;
+    $query = "call get_filtered_shows('$userID', '$filterType', '$showDate');";
+    $query = $db->query($query);
+    return $query;
+}
 
 
 
