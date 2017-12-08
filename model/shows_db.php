@@ -102,6 +102,20 @@ function shows_after_today_by_artist($artistid){
     return $query;
 }
 
+function shows_after_today(){
+    global $db;
+    $query = "select * from shows where ShowDate >= NOW();";
+    $query = $db->query($query);
+    return $query;
+}
+
+function shows_before_today(){
+    global $db;
+    $query = "select * from shows where ShowDate < NOW();";
+    $query = $db->query($query);
+    return $query;
+}
+
 
 
 
