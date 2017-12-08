@@ -71,8 +71,8 @@
             </select>
             <br>
             Filter by:
-            <input type="radio" name="filter_type" value="venue"> Venue
             <input type="radio" name="filter_type" value="artist"> Artist
+            <input type="radio" name="filter_type" value="venue"> Venue
             <br>
             Showdate:
             <input type="date" name="showdate">
@@ -83,6 +83,11 @@
             <br>
             <input type="submit" value="Filter">
             <input type="hidden" name="action" value="filter_shows">
+            <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
+        </form>
+        <form method="post" action="./">
+            <input type="submit" value="Reload">
+            <input type="hidden" name="action" value="profile">
             <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
         </form>
     </div>
@@ -114,7 +119,7 @@
         <?php
             $show_shows = isset($filteredShows) ? $filteredShows : get_all_shows();
         ?>
-        <?php foreach(shows_after_today() as $show) :?>
+        <?php foreach($show_shows as $show) :?>
             <?php
             $venue = get_venue_from_venueId($show['VenueID'])->fetch();
             $venue_user = get_user_by_venueid($venue["VenueID"])->fetch();

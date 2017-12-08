@@ -314,12 +314,12 @@ else if($action == "filter_shows") {
             $filterType = $_POST["filter_type"];
             $userID = -1;
             if ($filterType == "artist") {
-                $userID = get_user_by_artistid($_POST["artistID"]);
+                $userID = get_user_by_artistid($_POST["artistID"])->fetch()["UserID"];
             }
             else {
-                $userID = get_user_by_venueid($_POST["venueID"]);
+                $userID = get_user_by_venueid($_POST["venueID"])->fetch()["UserID"];
             }
-            get_filtered_shows($userID, $filterType, $_POST["showdate"], $_POST["filter_date"]);
+            $filteredShows = get_filtered_shows($userID, $filterType, $_POST["showdate"], $_POST["filter_date"]);
         }
         include "view/profile.php";
     }
