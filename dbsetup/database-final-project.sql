@@ -163,6 +163,24 @@ insert into Performs (ArtistID, ShowID, Headline) values (5, 5, 'Opener');
 insert into Performs (ArtistID, ShowID, Headline) values (4, 6, 'Headline');
 insert into Performs (ArtistID, ShowID, Headline) values (5, 6, 'Headline');
 
+DROP TRIGGER IF EXISTS insert_user;
+
+DELIMITER //
+CREATE TRIGGER insert_user
+	After insert ON Users
+    FOR EACH ROW
+BEGIN
+            
+	IF (New.UserType = 'Artist') THEN
+			insert into Artist (UserID, ArtistName) values (New.UserID, New.UserName);
+	END IF;
+	IF (New.UserType = 'Venue') THEN
+			insert into Venue (UserID, VenueName) values (New.UserID, New.UserName);
+	END IF;
+    
+END; //
+DELIMITER ;
+
 DROP TRIGGER IF EXISTS future_shows_only;
 
 DELIMITER //
@@ -237,6 +255,8 @@ BEGIN
     
 END; //
 DELIMITER;
+
+-- ------------------------------------------------------------------------------------------
 
 DROP FUNCTION IF EXISTS get_tickets_by_user;
 DELIMITER //
