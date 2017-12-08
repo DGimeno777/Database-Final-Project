@@ -131,7 +131,7 @@
                             <span><?php echo $opener["ArtistName"];?></span>
                             <br>
                         <?php endforeach;?>
-                    </th
+                    </th>
                     <th>
                         <?php echo $show["TicketPrice"]; ?>
                     </th>

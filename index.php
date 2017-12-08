@@ -63,8 +63,8 @@ else if($action == "register_go") {
         isset($_POST['password_verify']) &&
         $_POST['password'] == $_POST['password_verify'] &&
         isset($_POST['user_type']) &&
-        isset($_POST['latitude']) &&
-        isset($_POST['longitude'])) {
+        isset($_POST['latitude']) && $_POST['latitude'] != "" &&
+        isset($_POST['longitude']) && $_POST['longitude'] != "" ) {
         $username = $_POST['username'];
         $password = $_POST['password'];
         $user_type = $_POST['user_type'];

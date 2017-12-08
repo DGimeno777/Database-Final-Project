@@ -45,6 +45,37 @@
     </table>
 </div>
 <div>
+    <div>
+        <form method="post" action="./">
+            <?php
+                $allArtists = get_all_artists();
+                $allVenues = get_all_venues();
+            ?>
+            Artist:
+            <select name="artistID">
+                <?php foreach($allArtists as $artist) :?>
+                    <option value="<?php echo $artist["ArtistID"]; ?>">
+                        <?php echo $artist["ArtistName"]; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+            Venue
+            <select name="venueID">
+                <?php foreach($allVenues as $venue) :?>
+                    <option value="<?php echo $venue["VenueID"]; ?>">
+                        <?php echo $venue["VenueName"]; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+            <br>
+            Filter by:
+            <input type="radio" name="user_type" value="venue"> Venue
+            <input type="radio" name="user_type" value="artist"> Artist
+            <br>
+            <input type="submit" value="Filter">
+            <input type="hidden" name="action" value="filter_shows">
+        </form>
+    </div>
     Shows:
     <table>
         <tr>
@@ -70,7 +101,7 @@
                 <!-- Buy ticket -->
             </th>
         </tr>
-        <?php foreach(get_all_shows() as $show) :?>
+        <?php foreach(shows_after_today() as $show) :?>
             <?php
             $venue = get_venue_from_venueId($show['VenueID'])->fetch();
             $venue_user = get_user_by_venueid($venue["VenueID"])->fetch();
