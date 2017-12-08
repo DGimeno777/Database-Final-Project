@@ -310,7 +310,7 @@ else if($action == "filter_shows") {
     if (isset($_POST["userID"])) {
         $user = get_user_by_userId($_POST["userID"])->fetch();
         $filteredShows = get_all_shows();
-        if (isset($_POST["filter_type"]) && isset($_POST["filter_date"])) {
+        if (isset($_POST["filter_type"]) && isset($_POST["filter_date"]) && isset($_POST["showdate"])) {
             $filterType = $_POST["filter_type"];
             $userID = -1;
             if ($filterType == "artist") {
@@ -319,7 +319,7 @@ else if($action == "filter_shows") {
             else {
                 $userID = get_user_by_venueid($_POST["venueID"]);
             }
-            get_filtered_shows($userID, $filterType, $_POST["filter_date"]);
+            get_filtered_shows($userID, $filterType, $_POST["showdate"], $_POST["filter_date"]);
         }
         include "view/profile.php";
     }

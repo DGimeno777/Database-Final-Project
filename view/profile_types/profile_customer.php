@@ -74,9 +74,12 @@
             <input type="radio" name="filter_type" value="venue"> Venue
             <input type="radio" name="filter_type" value="artist"> Artist
             <br>
-            Show Date Before or After Today:
-            <input type="radio" name="filter_date" value="after"> After Today
-            <input type="radio" name="filter_date" value="before"> Before Today
+            Showdate:
+            <input type="date" name="showdate">
+            <br>
+            Before or After the date:
+            <input type="radio" name="filter_date" value="after"> After Date
+            <input type="radio" name="filter_date" value="before"> Before Date
             <br>
             <input type="submit" value="Filter">
             <input type="hidden" name="action" value="filter_shows">
