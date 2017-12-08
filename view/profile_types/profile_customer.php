@@ -44,8 +44,10 @@
         <?php endforeach; ?>
     </table>
 </div>
+<br>
 <div>
     <div>
+        Filter:
         <form method="post" action="./">
             <?php
                 $allArtists = get_all_artists();
@@ -69,11 +71,16 @@
             </select>
             <br>
             Filter by:
-            <input type="radio" name="user_type" value="venue"> Venue
-            <input type="radio" name="user_type" value="artist"> Artist
+            <input type="radio" name="filter_type" value="venue"> Venue
+            <input type="radio" name="filter_type" value="artist"> Artist
+            <br>
+            Show Date Before or After Today:
+            <input type="radio" name="filter_date" value="after"> After Today
+            <input type="radio" name="filter_date" value="before"> Before Today
             <br>
             <input type="submit" value="Filter">
             <input type="hidden" name="action" value="filter_shows">
+            <input type="hidden" name="userID" value="<?php echo $user["UserID"];?>">
         </form>
     </div>
     Shows:
@@ -101,6 +108,9 @@
                 <!-- Buy ticket -->
             </th>
         </tr>
+        <?php
+            $show_shows = isset($filteredShows) ? $filteredShows : get_all_shows();
+        ?>
         <?php foreach(shows_after_today() as $show) :?>
             <?php
             $venue = get_venue_from_venueId($show['VenueID'])->fetch();

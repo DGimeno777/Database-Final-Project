@@ -306,6 +306,27 @@ else if ($action == "remove_artist_song") {
         include "view/homepage.php";
     }
 }
+else if($action == "filter_shows") {
+    if (isset($_POST["userID"])) {
+        $user = get_user_by_userId($_POST["userID"])->fetch();
+        $filteredShows = get_all_shows();
+        if (isset($_POST["filter_type"]) && isset($_POST["filter_date"])) {
+            $filterType = $_POST["filter_type"];
+            $userID = -1;
+            if ($filterType == "artist") {
+                $userID = get_user_by_artistid($_POST["artistID"]);
+            }
+            else {
+                $userID = get_user_by_venueid($_POST["venueID"]);
+            }
+            get_filtered_shows($userID, $filterType, $_POST["filter_date"]);
+        }
+        include "view/profile.php";
+    }
+    else {
+        include "view/homepage.php";
+    }
+}
 else{
     include "view/homepage.php";
 }
